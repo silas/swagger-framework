@@ -9,7 +9,6 @@
     "z-schema": "*"
   },
   "devDependencies": {
-    "express": "*",
     "jscs": "*",
     "jshint": "*",
     "mocha": "*",
