@@ -1,0 +1,30 @@
+{
+  "name": "swagger-framework",
+  "version": "0.1.0",
+  "description": "Swagger Framework for web services",
+  "main": "lib/index.js",
+  "dependencies": {
+    "express": "*",
+    "lodash": "*",
+    "z-schema": "*"
+  },
+  "devDependencies": {
+    "express": "*",
+    "jscs": "*",
+    "jshint": "*",
+    "mocha": "*",
+    "supertest": "*",
+    "should": "*"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/jshint lib test && ./node_modules/.bin/jscs lib test && ./node_modules/.bin/mocha --recursive --require should"
+  },
+  "keywords": [
+    "swagger",
+    "framework",
+    "express"
+  ],
+  "repository": "https://github.com/silas/swagger-framework.git",
+  "author": "Silas Sewell <silas@sewell.org>",
+  "license": "MIT"
+}
