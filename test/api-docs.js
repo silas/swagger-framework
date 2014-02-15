@@ -1,6 +1,5 @@
 'use strict';
 
-var ZSchema = require('z-schema');
 var express = require('express');
 var request = require('supertest');
 var helper = require('./helper');
@@ -20,15 +19,8 @@ describe('docs', function() {
       .expect(200)
       .end(function(err, res) {
         if (err) throw err;
-        ZSchema.validate(res.body, schema.swagger.declaration, function(err) {
-          if (err) {
-            if (err.errors) {
-              err.message += '\n' + JSON.stringify(err.errors, null, 4);
-            }
-            throw err;
-          }
-          done();
-        });
+        schema.validateThrow(schema.swagger.declaration, res.body);
+        done();
       });
   });
 });

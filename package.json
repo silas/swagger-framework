@@ -5,8 +5,8 @@
   "main": "lib/index.js",
   "dependencies": {
     "express": "*",
-    "lodash": "*",
-    "z-schema": "*"
+    "jjv": "*",
+    "lodash": "*"
   },
   "devDependencies": {
     "jscs": "*",

@@ -1,12 +1,13 @@
 'use strict';
 
-var ZSchema = require('z-schema');
-var should = require('should');
+var jjv = require('jjv');
 var schema = require('../lib/schema');
+var should = require('should');
 
 describe('schema', function() {
-  before(function() {
-    this.schema = new ZSchema();
+
+  beforeEach(function() {
+    this.schema = jjv();
   });
 
   describe('api', function() {
@@ -16,10 +17,10 @@ describe('schema', function() {
         description: 'Hello API',
       };
 
-      ZSchema.validate(data, schema.swagger.api, function(err) {
-        should.not.exist(err);
-        done();
-      });
+      var errors = this.schema.validate(schema.swagger.api, data);
+      should.not.exist(errors);
+
+      done();
     });
   });
 
@@ -34,10 +35,17 @@ describe('schema', function() {
         type: 'Result',
       };
 
-      ZSchema.validate(data, schema.swagger.resource, function(err) {
-        should.not.exist(err);
-        done();
+      this.schema.addSchema('Result', {
+        id: 'Result',
+        properties: {
+          message: { type: 'string' },
+        },
       });
+
+      var errors = this.schema.validate(schema.swagger.resource, data);
+      should.not.exist(errors);
+
+      done();
     });
   });
 
@@ -51,10 +59,9 @@ describe('schema', function() {
         required: ['message'],
       };
 
-      ZSchema.validate(data, schema.swagger.model, function(err) {
-        should.not.exist(err);
-        done();
-      });
+      schema.validateThrow(schema.swagger.model, data);
+
+      done();
     });
   });
 });
