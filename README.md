@@ -25,9 +25,11 @@ var api = framework.api({
   ],
 });
 
-var resource = api.resource({ path: '/hello/{name}' });
+var resource = api.resource({
+  path: '/hello/{name}'
+});
 
-resource.operation(
+var operation = resource.operation(
   {
     method: 'GET',
     path: '/hello/{name}',
