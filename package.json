@@ -4,11 +4,15 @@
   "description": "Swagger Framework for web services",
   "main": "lib/index.js",
   "dependencies": {
-    "express": "*",
-    "jjv": "*",
-    "lodash": "*"
+    "accepts": "1.0.0",
+    "body": "4.4.2",
+    "jjv": "https://github.com/acornejo/jjv/archive/v0.3.4.tar.gz",
+    "lodash": "2.4.1",
+    "routington": "0.1.2",
+    "type-is": "1.0.0"
   },
   "devDependencies": {
+    "express": "*",
     "jscs": "*",
     "jshint": "*",
     "mocha": "*",

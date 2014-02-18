@@ -2,15 +2,15 @@
 
 var swagger = require('../lib');
 
-exports.s1 = function() {
-  var s = swagger.Server({ basePath: 'http://localhost:8000/s1' });
+exports.api = function() {
+  var framework = swagger.Framework({ basePath: 'http://localhost:8000' });
 
-  s.api({
+  var api = framework.api({
     path: '/hello',
     description: 'Welcome to the world',
   });
 
-  s.resource(
+  api.resource(
     {
       method: 'GET',
       path: '/hello/world',
@@ -20,9 +20,9 @@ exports.s1 = function() {
       type: 'void',
     },
     function(req, res) {
-      res.send(200, { code: 200 });
+      res.reply(200, { code: 200 });
     }
   );
 
-  return s;
+  return framework;
 };

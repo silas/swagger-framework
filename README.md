@@ -12,14 +12,20 @@ var host = '127.0.0.1';
 var port = 8000;
 var url = 'http://' + host + ':' + port;
 
-var v1 = swagger.Server({ basePath: url + '/v1' });
+var framework = swagger.Framework({ basePath: url });
 
-v1.api({
+var api = framework.api({
   path: '/hello',
   description: 'Hello API',
+  consumes: [
+    'application/json',
+  ],
+  produces: [
+    'application/json',
+  ],
 });
 
-v1.resource(
+api.resource(
   {
     method: 'GET',
     path: '/hello/{name}',
@@ -53,11 +59,11 @@ v1.resource(
       message += 'hello ' + req.swagger.path.name;
     }
 
-    res.send(200, { message: message });
+    res.reply(200, { message: message });
   }
 );
 
-v1.model({
+framework.model({
   id: 'Result',
   properties: {
     message: { type: 'string' },
@@ -69,7 +75,8 @@ v1.model({
 if (!module.parent) {
   var app = express();
 
-  app.use('/v1', v1.dispatcher());
+  app.use('/api-docs', framework.docs.dispatcher());
+  app.use(framework.dispatcher());
 
   app.listen(port, host, function(err) {
     if (err) throw err;

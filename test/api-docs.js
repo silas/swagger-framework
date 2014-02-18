@@ -8,13 +8,13 @@ var schema = require('../lib/schema');
 describe('docs', function() {
   beforeEach(function() {
     this.app = express();
-    this.app.use('/s1', helper.s1().dispatcher());
+    this.app.use('/api-docs', helper.api().docs.dispatcher());
     this.request = request(this.app);
   });
 
   it('should render api declaration', function(done) {
     this.request
-      .get('/s1/api-docs/hello')
+      .get('/api-docs/hello')
       .expect('Content-Type', /json/)
       .expect(200)
       .end(function(err, res) {
