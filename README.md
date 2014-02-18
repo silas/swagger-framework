@@ -32,7 +32,6 @@ var resource = api.resource({
 var operation = resource.operation(
   {
     method: 'GET',
-    path: '/hello/{name}',
     summary: 'Say hello',
     nickname: 'helloName',
     parameters: [
