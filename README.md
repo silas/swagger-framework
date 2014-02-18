@@ -12,11 +12,38 @@ var host = '127.0.0.1';
 var port = 8000;
 var url = 'http://' + host + ':' + port;
 
-var framework = swagger.Framework({ basePath: url });
+var framework = swagger.Framework({
+  apiVersion: '1.0.0',
+  basePath: url,
+  authorizations: {
+    oauth2: {
+      type: 'oauth2',
+      grantTypes: {
+        implicit: {
+          loginEndpoint: {
+            url: url + '/oauth/dialog',
+          },
+          tokenName: 'access_token',
+        },
+        authorization_code: {
+          tokenRequestEndpoint: {
+            url: url + '/oauth/requestToken',
+            clientIdName: 'client_id',
+            clientSecretName: 'client_secret',
+          },
+          tokenEndpoint: {
+            url: url + '/oauth/token',
+            tokenName: 'auth_code',
+          },
+        },
+      },
+    },
+  },
+});
 
 var api = framework.api({
-  path: '/hello',
-  description: 'Hello API',
+  path: '/pet',
+  description: 'Manage pets',
   consumes: [
     'application/json',
   ],
@@ -26,52 +53,69 @@ var api = framework.api({
 });
 
 var resource = api.resource({
-  path: '/hello/{name}'
+  path: '/pet/{petId}'
 });
 
 var operation = resource.operation(
   {
     method: 'GET',
-    summary: 'Say hello',
-    nickname: 'helloName',
+    summary: 'Find pet by ID',
+    notes: 'Returns a pet based on ID',
+    type: 'Pet',
+    nickname: 'getPetById',
+    authorizations: [],
     parameters: [
       {
-        name: 'name',
-        required: true,
-        type: 'string',
-        paramType: 'path',
-        minimum: '1',
-        maximum: '30',
-      },
-      {
-        name: 'count',
+        name: 'petId',
+        description: 'ID of pet that needs to be fetched',
         required: true,
         type: 'integer',
-        paramType: 'query',
-        minimum: '1',
-        maximum: '10',
+        format: 'int64',
+        paramType: 'path',
+        minimum: '1.0',
+        maximum: '100000.0',
       },
     ],
-    type: 'Result',
+    responseMessages: [
+      {
+        code: 400,
+        message: 'Invalid ID supplied',
+      },
+      {
+        code: 404,
+        message: 'Pet not found',
+      },
+    ],
   },
   function(req, res) {
-    var message = '';
-
-    for (var i = 0; i < req.swagger.query.count; i++) {
-      if (i > 0) message += ' ';
-      message += 'hello ' + req.swagger.path.name;
-    }
-
-    res.swagger.reply(200, { message: message });
+    res.swagger.reply(200, {
+      message: 'pet id ' + req.swagger.path.petId,
+    });
   }
 );
 
 framework.model({
-  id: 'Result',
+  id: 'Pet',
+  required: ['id', 'name'],
   properties: {
-    message: { type: 'string' },
+    id: {
+      type: 'integer',
+      format: 'int64',
+      description: 'unique identifier for the pet',
+      minimum: '0.0',
+      maximum: '100.0',
+    },
+    name: { type: 'string' },
+    photoUrls: {
+      type: 'array',
+      items: { type: 'string' },
+    },
+    status: {
+      type: 'string',
+      description: 'pet status in the store',
+      enum: ['available', 'pending', 'sold'],
+    },
   },
-  required: ['message'],
 });
 
 if (!module.parent) {
