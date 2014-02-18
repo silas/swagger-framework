@@ -19,7 +19,9 @@ exports.api = function() {
     ],
   });
 
-  api.resource(
+  var resource = api.resource({ path: '/hello/{name}' });
+
+  resource.operation(
     {
       method: 'GET',
       path: '/hello/{name}',

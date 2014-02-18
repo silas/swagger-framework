@@ -25,7 +25,9 @@ var api = framework.api({
   ],
 });
 
-api.resource(
+var resource = api.resource({ path: '/hello/{name}' });
+
+resource.operation(
   {
     method: 'GET',
     path: '/hello/{name}',
@@ -70,7 +72,6 @@ framework.model({
   },
   required: ['message'],
 });
-
 
 if (!module.parent) {
   var app = express();
