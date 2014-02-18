@@ -29,7 +29,7 @@ exports.api = function() {
       type: 'Reply',
     },
     function(req, res) {
-      res.reply(200, { message: 'ok' });
+      res.swagger.reply(200, { message: 'ok' });
     }
   );
 

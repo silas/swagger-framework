@@ -59,7 +59,7 @@ api.resource(
       message += 'hello ' + req.swagger.path.name;
     }
 
-    res.reply(200, { message: message });
+    res.swagger.reply(200, { message: message });
   }
 );
 
