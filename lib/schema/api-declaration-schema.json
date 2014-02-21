@@ -1,6 +1,6 @@
 {
   "type": "object",
-  "$schema": "http://json-schema.org/draft-04/schema",
+  "schema": {"$ref": "http://json-schema.org/draft-04/schema#"},
   "required": [
     "swaggerVersion",
     "resourcePath",
@@ -60,10 +60,7 @@
                   ],
                   "properties": {
                     "authorizations": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
+                      "type": "object"
                     },
                     "method": {
                       "type": "string",
@@ -119,6 +116,7 @@
                               "query",
                               "path",
                               "body",
+                              "form",
                               "header"
                             ]
                           },
@@ -139,6 +137,12 @@
                               },
                               {
                                 "$ref": "#/definitions/schemaArray"
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "$ref": {"type": "string"}
+                                }
                               }
                             ],
                             "default": {}

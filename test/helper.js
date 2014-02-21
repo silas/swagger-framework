@@ -1,46 +1,40 @@
 'use strict';
 
 var swagger = require('../lib');
+var lodash = require('lodash');
+
+var list = require('./helper/list.json');
+var pet = require('./helper/pet.json');
 
 exports.api = function() {
+  var setupModels = {};
+
   var framework = swagger.Framework({
-    basePath: 'http://localhost',
-    apiVersion: '1.2.3',
+    basePath: pet.basePath,
+    apiVersion: pet.apiVersion,
   });
 
-  var api = framework.api({
-    path: '/hello',
-    description: 'Welcome to the world',
-    consumes: [
-      'application/json',
-    ],
-    produces: [
-      'application/json',
-    ],
-  });
+  list.apis.forEach(function(aSpec) {
+    var name = aSpec.path.slice(1);
+    var data = require('./helper/' + name + '.json');
+    var api = framework.api(aSpec);
 
-  var resource = api.resource({ path: '/hello/{name}' });
+    lodash.forOwn(data.models, function(model) {
+      if (setupModels[model.id]) return;
+      framework.model(model);
+      setupModels[model.id] = model;
+    });
 
-  resource.operation(
-    {
-      method: 'GET',
-      path: '/hello/{name}',
-      summary: 'Say hello to the world',
-      nickname: 'helloWorld',
-      parameters: [],
-      type: 'Reply',
-    },
-    function(req, res) {
-      res.swagger.reply(200, { message: 'ok' });
-    }
-  );
+    data.apis.forEach(function(rSpec) {
+      var resource = api.resource({ path: rSpec.path });
 
-  framework.model({
-    id: 'Reply',
-    properties: {
-      message: { type: 'string' },
-    },
-    required: ['message'],
+      rSpec.operations.forEach(function(oSpec) {
+        resource.operation(oSpec, function(req, res) {
+          res.statusCode = 200;
+          res.end();
+        });
+      });
+    });
   });
 
   return framework;

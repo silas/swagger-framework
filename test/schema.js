@@ -1,13 +1,13 @@
 'use strict';
 
-var jjv = require('jjv');
+var Environment = require('../lib/environment');
 var schema = require('../lib/schema');
 var should = require('should');
 
 describe('schema', function() {
 
   beforeEach(function() {
-    this.schema = jjv();
+    this.env = new Environment();
   });
 
   describe('api', function() {
@@ -17,7 +17,7 @@ describe('schema', function() {
         description: 'Hello API',
       };
 
-      var errors = this.schema.validate(schema.swagger.api, data);
+      var errors = this.env.validateThrow(schema.swagger.api, data);
       should.not.exist(errors);
 
       done();
@@ -35,15 +35,14 @@ describe('schema', function() {
         type: 'Result',
       };
 
-      this.schema.addSchema('Result', {
+      this.env.schema.addSchema('Result', {
         id: 'Result',
         properties: {
           message: { type: 'string' },
         },
       });
 
-      var errors = this.schema.validate(schema.swagger.resource, data);
-      should.not.exist(errors);
+      this.env.validateThrow(schema.swagger.resource, data);
 
       done();
     });
@@ -59,7 +58,7 @@ describe('schema', function() {
         required: ['message'],
       };
 
-      schema.validateThrow(schema.swagger.model, data);
+      this.env.validateThrow(schema.swagger.model, data);
 
       done();
     });
