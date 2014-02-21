@@ -6,7 +6,7 @@ var lodash = require('lodash');
 var list = require('./helper/list.json');
 var pet = require('./helper/pet.json');
 
-exports.api = function() {
+exports.framework = function() {
   var setupModels = {};
 
   var framework = swagger.Framework({

@@ -9,7 +9,7 @@ var schema = require('../../lib/schema');
 describe('docs', function() {
   beforeEach(function() {
     this.app = express();
-    this.app.use('/api-docs', helper.api().docs.dispatcher());
+    this.app.use('/api-docs', helper.framework().docs.dispatcher());
     this.request = request(this.app);
     this.env = new Environment();
   });
