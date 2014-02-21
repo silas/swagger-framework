@@ -1,4 +1,4 @@
-# Swagger Framework
+# Swagger Framework [![Build Status](https://travis-ci.org/silas/swagger-framework.png?branch=master)](https://travis-ci.org/silas/swagger-framework)
 
 Swagger Framework for web services.
 
