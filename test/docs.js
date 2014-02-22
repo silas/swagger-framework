@@ -19,6 +19,7 @@ describe('Docs', function() {
           '/test': { spec: { path: '/test', description: 'description' } },
         },
         found: true,
+        setup: function() {},
       });
 
       var spec = docs.list();
