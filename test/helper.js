@@ -1,7 +1,8 @@
 'use strict';
 
-var swagger = require('../lib');
 var lodash = require('lodash');
+
+var swagger = require('../lib');
 
 var list = require('./helper/list.json');
 var pet = require('./helper/pet.json');

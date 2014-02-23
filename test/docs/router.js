@@ -1,10 +1,12 @@
 'use strict';
 
-var Environment = require('../../lib/environment');
 var express = require('express');
-var helper = require('../helper');
 var request = require('supertest');
+
+var Environment = require('../../lib/environment');
 var schema = require('../../lib/schema');
+
+var helper = require('../helper');
 
 describe('docs', function() {
   beforeEach(function() {

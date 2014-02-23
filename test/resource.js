@@ -1,9 +1,11 @@
 'use strict';
 
+var lodash = require('lodash');
+
 var Environment = require('../lib/environment');
 var Operation = require('../lib/operation');
 var Resource = require('../lib/resource');
-var lodash = require('lodash');
+
 var pet = require('./helper/pet.json');
 
 describe('Resource', function() {

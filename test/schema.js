@@ -1,11 +1,11 @@
 'use strict';
 
-var Environment = require('../lib/environment');
-var schema = require('../lib/schema');
 var should = require('should');
 
-describe('schema', function() {
+var Environment = require('../lib/environment');
+var schema = require('../lib/schema');
 
+describe('schema', function() {
   beforeEach(function() {
     this.env = new Environment();
   });
