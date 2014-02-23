@@ -1,5 +1,3 @@
 *.log
 *swp
-.rock.yml
-example.js
 node_modules

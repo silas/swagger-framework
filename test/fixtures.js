@@ -15,11 +15,13 @@ var pet = require('./fixtures/pet.json');
  * Helper functions.
  */
 
-exports.framework = function() {
+exports.framework = function(options) {
+  options = options || {};
+
   var setupModels = {};
 
   var framework = swagger.Framework({
-    basePath: pet.basePath,
+    basePath: options.basePath || pet.basePath,
     apiVersion: pet.apiVersion,
   });
 

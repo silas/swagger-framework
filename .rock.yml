@@ -1,0 +1,10 @@
+runtime: node010
+
+run: exec node example.js
+
+test: |
+  if [[ -n "$ROCK_ARGV" ]]; then
+    exec mocha --require should $ROCK_ARGV
+  else
+    {{ parent }}
+  fi
