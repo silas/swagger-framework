@@ -41,8 +41,25 @@ exports.framework = function(options) {
 
       rSpec.operations.forEach(function(oSpec) {
         resource.operation(oSpec, function(req, res) {
-          res.statusCode = 200;
-          res.end();
+          var request = lodash.pick(
+            req.swagger,
+            'header',
+            'path',
+            'query',
+            'body',
+            'form'
+          );
+
+          var spec = {
+            operation: req.swagger.operation.spec,
+            resource: req.swagger.operation.resource.spec,
+            api: req.swagger.operation.resource.api.spec,
+          };
+
+          res.swagger.reply(200, {
+            request: request,
+            spec: spec,
+          });
         });
       });
     });
