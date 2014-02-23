@@ -11,10 +11,9 @@ var pet = require('./helper/pet.json');
 describe('Resource', function() {
   describe('constructor', function() {
     it('should work with new', function(done) {
-      var fn = function() {};
       var spec = { hello: 'world' };
 
-      var resource = new Resource(spec, fn);
+      var resource = new Resource(spec);
 
       resource.spec.should.eql(spec);
       resource.spec.operations.should.eql([]);
@@ -25,10 +24,9 @@ describe('Resource', function() {
     });
 
     it('should work without new', function(done) {
-      var fn = function() {};
       var spec = { hello: 'world' };
 
-      var resource = Resource(spec, fn);  // jshint ignore:line
+      var resource = Resource(spec);  // jshint ignore:line
 
       resource.spec.should.eql(spec);
       resource.spec.operations.should.eql([]);
