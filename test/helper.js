@@ -1,11 +1,19 @@
 'use strict';
 
+/**
+ * Module dependencies.
+ */
+
 var lodash = require('lodash');
 
 var swagger = require('../lib');
 
 var index = require('./helper/index.json');
 var pet = require('./helper/pet.json');
+
+/**
+ * Helper functions.
+ */
 
 exports.framework = function() {
   var setupModels = {};

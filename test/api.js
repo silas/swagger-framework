@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * Module dependencies.
+ */
+
 var lodash = require('lodash');
 
 var Api = require('../lib/api');
@@ -8,6 +12,10 @@ var Resource = require('../lib/resource');
 
 var index = require('./helper/index.json');
 var pet = require('./helper/pet.json');
+
+/**
+ * Tests
+ */
 
 describe('Api', function() {
   describe('constructor', function() {

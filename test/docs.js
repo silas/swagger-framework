@@ -1,6 +1,14 @@
 'use strict';
 
+/**
+ * Module dependencies.
+ */
+
 var Docs = require('../lib/docs');
+
+/**
+ * Tests
+ */
 
 describe('Docs', function() {
   describe('index', function() {

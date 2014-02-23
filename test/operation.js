@@ -1,11 +1,19 @@
 'use strict';
 
+/**
+ * Module dependencies.
+ */
+
 var lodash = require('lodash');
 
 var Environment = require('../lib/environment');
 var Operation = require('../lib/operation');
 
 var pet = require('./helper/pet.json');
+
+/**
+ * Tests
+ */
 
 describe('Operation', function() {
   describe('constructor', function() {

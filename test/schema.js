@@ -1,9 +1,17 @@
 'use strict';
 
+/**
+ * Module dependencies.
+ */
+
 var should = require('should');
 
 var Environment = require('../lib/environment');
 var schema = require('../lib/schema');
+
+/**
+ * Tests
+ */
 
 describe('schema', function() {
   beforeEach(function() {

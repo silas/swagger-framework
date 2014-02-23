@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * Module dependencies.
+ */
+
 var express = require('express');
 var request = require('supertest');
 
@@ -7,6 +11,10 @@ var Environment = require('../../lib/environment');
 var schema = require('../../lib/schema');
 
 var helper = require('../helper');
+
+/**
+ * Tests
+ */
 
 describe('docs', function() {
   beforeEach(function() {
