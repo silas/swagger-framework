@@ -10,7 +10,7 @@ var Environment = require('../lib/environment');
 var Operation = require('../lib/operation');
 var Resource = require('../lib/resource');
 
-var pet = require('./helper/pet.json');
+var pet = require('./fixtures/pet.json');
 
 /**
  * Tests

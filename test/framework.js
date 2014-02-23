@@ -13,8 +13,8 @@ var Environment = require('../lib/environment');
 var Framework = require('../lib/framework');
 var Router = require('../lib/framework/router');
 
-var index = require('./helper/index.json');
-var pet = require('./helper/pet.json');
+var index = require('./fixtures/index.json');
+var pet = require('./fixtures/pet.json');
 
 /**
  * Helper functions.

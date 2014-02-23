@@ -8,8 +8,8 @@ var lodash = require('lodash');
 
 var swagger = require('../lib');
 
-var index = require('./helper/index.json');
-var pet = require('./helper/pet.json');
+var index = require('./fixtures/index.json');
+var pet = require('./fixtures/pet.json');
 
 /**
  * Helper functions.
@@ -25,7 +25,7 @@ exports.framework = function() {
 
   index.apis.forEach(function(aSpec) {
     var name = aSpec.path.slice(1);
-    var data = lodash.cloneDeep(require('./helper/' + name + '.json'));
+    var data = lodash.cloneDeep(require('./fixtures/' + name + '.json'));
     var api = framework.api(aSpec);
 
     lodash.forOwn(data.models, function(model) {

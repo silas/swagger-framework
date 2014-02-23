@@ -10,7 +10,7 @@ var request = require('supertest');
 var Environment = require('../../lib/environment');
 var schema = require('../../lib/schema');
 
-var helper = require('../helper');
+var fixtures = require('../fixtures');
 
 /**
  * Tests
@@ -19,7 +19,7 @@ var helper = require('../helper');
 describe('docs', function() {
   beforeEach(function() {
     this.app = express();
-    this.app.use('/api-docs', helper.framework().docs.dispatcher());
+    this.app.use('/api-docs', fixtures.framework().docs.dispatcher());
     this.request = request(this.app);
     this.env = new Environment();
   });

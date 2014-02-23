@@ -10,8 +10,8 @@ var Api = require('../lib/api');
 var Environment = require('../lib/environment');
 var Resource = require('../lib/resource');
 
-var index = require('./helper/index.json');
-var pet = require('./helper/pet.json');
+var index = require('./fixtures/index.json');
+var pet = require('./fixtures/pet.json');
 
 /**
  * Tests
