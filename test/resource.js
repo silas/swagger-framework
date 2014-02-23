@@ -52,7 +52,6 @@ describe('Resource', function() {
       var self = this;
 
       self.resource.spec = { hello: 'world', operations: [] };
-      self.resource.operations = {};
 
       (function() {
         self.resource.setup(self.api);
@@ -64,7 +63,6 @@ describe('Resource', function() {
     it('should work for valid spec', function(done) {
       this.resource.spec = lodash.cloneDeep(pet.apis[0]);
       this.resource.spec.operations = [];
-      this.resource.operations = {};
 
       this.resource.setup(this.api);
 
@@ -80,7 +78,6 @@ describe('Resource', function() {
       self.resource.spec = lodash.cloneDeep(pet.apis[0]);
       self.resource.spec.operations = [];
       self.resource.spec.path = 'hello/';
-      self.resource.operations = {};
 
       (function() {
         self.resource.setup(self.api);
@@ -93,7 +90,6 @@ describe('Resource', function() {
       this.resource.spec = lodash.cloneDeep(pet.apis[0]);
       this.resource.spec.operations = [];
       this.resource.spec.path = '/hello';
-      this.resource.operations = {};
 
       this.resource.setup(this.api);
 
@@ -109,7 +105,6 @@ describe('Resource', function() {
     beforeEach(function() {
       this.resource = new Resource(lodash.cloneDeep(pet.apis[0]));
       this.resource.spec.operations = [];
-      this.resource.operations = {};
       this.spec = lodash.cloneDeep(pet.apis[0].operations[0]);
     });
 
