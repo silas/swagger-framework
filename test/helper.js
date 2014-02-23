@@ -4,7 +4,7 @@ var lodash = require('lodash');
 
 var swagger = require('../lib');
 
-var list = require('./helper/list.json');
+var index = require('./helper/index.json');
 var pet = require('./helper/pet.json');
 
 exports.framework = function() {
@@ -15,7 +15,7 @@ exports.framework = function() {
     apiVersion: pet.apiVersion,
   });
 
-  list.apis.forEach(function(aSpec) {
+  index.apis.forEach(function(aSpec) {
     var name = aSpec.path.slice(1);
     var data = lodash.cloneDeep(require('./helper/' + name + '.json'));
     var api = framework.api(aSpec);

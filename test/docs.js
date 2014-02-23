@@ -3,7 +3,7 @@
 var Docs = require('../lib/docs');
 
 describe('Docs', function() {
-  describe('list', function() {
+  describe('index', function() {
     it('should validate', function(done) {
       var docs = new Docs({
         spec: {
@@ -22,7 +22,7 @@ describe('Docs', function() {
         setup: function() {},
       });
 
-      var spec = docs.list();
+      var spec = docs.index();
 
       spec.should.have.property('apiVersion');
       spec.apiVersion.should.eql('1.2.3');

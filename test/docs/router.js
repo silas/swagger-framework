@@ -16,7 +16,7 @@ describe('docs', function() {
     this.env = new Environment();
   });
 
-  it('should render api list', function(done) {
+  it('should render api index', function(done) {
     this.request
       .get('/api-docs')
       .expect('Content-Type', /json/)
