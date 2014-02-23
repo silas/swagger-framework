@@ -16,7 +16,7 @@ exports.framework = function() {
 
   list.apis.forEach(function(aSpec) {
     var name = aSpec.path.slice(1);
-    var data = require('./helper/' + name + '.json');
+    var data = lodash.cloneDeep(require('./helper/' + name + '.json'));
     var api = framework.api(aSpec);
 
     lodash.forOwn(data.models, function(model) {

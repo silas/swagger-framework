@@ -2,6 +2,7 @@
 
 var Environment = require('../lib/environment');
 var Operation = require('../lib/operation');
+var lodash = require('lodash');
 var pet = require('./helper/pet.json');
 
 describe('Operation', function() {
@@ -58,7 +59,7 @@ describe('Operation', function() {
     });
 
     it('should work for valid spec', function(done) {
-      this.operation.spec = pet.apis[0].operations[0];
+      this.operation.spec = lodash.cloneDeep(pet.apis[0].operations[0]);
 
       this.operation.setup(this.resource);
 
