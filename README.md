@@ -88,7 +88,9 @@ framework.model({
   },
 });
 
-if (!module.parent) {
+if (module.parent) {
+  module.exports = framework;
+} else {
   var app = express();
 
   app.use('/api-docs', framework.docs.dispatcher());
