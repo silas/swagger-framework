@@ -1,10 +1,10 @@
 {
   "name": "swagger-framework",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Swagger Framework for web services",
   "main": "lib/index.js",
   "dependencies": {
-    "accepts": "1.0.0",
+    "accepts": "1.0.1",
     "body": "4.4.2",
     "jjv": "https://github.com/acornejo/jjv/archive/v0.3.4.tar.gz",
     "lodash": "2.4.1",
@@ -14,7 +14,7 @@
   "devDependencies": {
     "express": "3.4.8",
     "jscs": "1.2.4",
-    "jshint": "2.4.3",
+    "jshint": "2.4.4",
     "mocha": "1.17.1",
     "should": "3.1.2",
     "sinon": "1.8.2",
