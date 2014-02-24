@@ -16,7 +16,7 @@ var fixtures = require('../fixtures');
  * Tests
  */
 
-describe('docs', function() {
+describe('docs.router', function() {
   beforeEach(function() {
     this.app = express();
     this.app.use('/api-docs', fixtures.framework().docs.dispatcher());
