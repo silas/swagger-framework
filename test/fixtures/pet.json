@@ -138,6 +138,7 @@
                             "description": "Updated name of the pet",
                             "name": "name",
                             "paramType": "form",
+                            "minimum": "5",
                             "required": false,
                             "type": "string"
                         },

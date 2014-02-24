@@ -28,6 +28,13 @@ exports.framework = function(options) {
   index.apis.forEach(function(aSpec) {
     var name = aSpec.path.slice(1);
     var data = lodash.cloneDeep(require('./fixtures/' + name + '.json'));
+
+    lodash.merge(aSpec, lodash.pick(
+      data,
+      'consumes',
+      'produces'
+    ));
+
     var api = framework.api(aSpec);
 
     lodash.forOwn(data.models, function(model) {
