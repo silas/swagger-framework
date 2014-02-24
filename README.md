@@ -2,6 +2,9 @@
 
 Swagger Framework for web services.
 
+It implements the Node HTTP request listener interface, and works with the
+standard Node HTTP server, Express, and probably others.
+
 ### Example
 
 ``` javascript
@@ -98,6 +101,7 @@ if (module.parent) {
 
   app.listen(port, host, function(err) {
     if (err) throw err;
+
     console.log('Server started ' + url + '/');
   });
 }

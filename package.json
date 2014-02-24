@@ -26,7 +26,7 @@
   "keywords": [
     "swagger",
     "framework",
-    "express"
+    "validation"
   ],
   "repository": "https://github.com/silas/swagger-framework.git",
   "author": "Silas Sewell <silas@sewell.org>",
