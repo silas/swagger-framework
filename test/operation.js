@@ -18,26 +18,28 @@ var pet = require('./fixtures/pet.json');
 describe('Operation', function() {
   describe('constructor', function() {
     it('should work with new', function(done) {
-      var fn = function() {};
+      var fn1 = function() {};
+      var fn2 = function() {};
       var spec = { hello: 'world' };
 
-      var operation = new Operation(spec, fn);
+      var operation = new Operation(spec, fn1, fn2);
 
       operation.spec.should.eql(spec);
-      operation.fn.should.eql(fn);
+      operation.fn.should.eql([fn1, fn2]);
       operation.middleware.should.eql({});
 
       done();
     });
 
     it('should work without new', function(done) {
-      var fn = function() {};
+      var fn1 = function() {};
+      var fn2 = function() {};
       var spec = { hello: 'world' };
 
-      var operation = Operation(spec, fn);  // jshint ignore:line
+      var operation = Operation(spec, fn1, fn2);  // jshint ignore:line
 
       operation.spec.should.eql(spec);
-      operation.fn.should.eql(fn);
+      operation.fn.should.eql([fn1, fn2]);
       operation.middleware.should.eql({});
 
       done();
