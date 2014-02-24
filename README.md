@@ -58,8 +58,8 @@ var operation = resource.operation(
     ],
   },
   function(req, res) {
-    res.swagger.reply(200, {
-      message: 'pet id ' + req.swagger.path.petId,
+    res.sf.reply(200, {
+      message: 'pet id ' + req.sf.path.petId,
     });
   }
 );

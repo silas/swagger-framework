@@ -42,7 +42,7 @@ exports.framework = function(options) {
       rSpec.operations.forEach(function(oSpec) {
         resource.operation(oSpec, function(req, res) {
           var request = lodash.pick(
-            req.swagger,
+            req.sf,
             'header',
             'path',
             'query',
@@ -51,12 +51,12 @@ exports.framework = function(options) {
           );
 
           var spec = {
-            operation: req.swagger.operation.spec,
-            resource: req.swagger.operation.resource.spec,
-            api: req.swagger.operation.resource.api.spec,
+            operation: req.sf.operation.spec,
+            resource: req.sf.operation.resource.spec,
+            api: req.sf.operation.resource.api.spec,
           };
 
-          res.swagger.reply(200, {
+          res.sf.reply(200, {
             request: request,
             spec: spec,
           });
