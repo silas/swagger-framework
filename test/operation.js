@@ -65,7 +65,7 @@ describe('Operation', function() {
 
       (function() {
         self.operation.setup(self.resource);
-      }).should.throw(/invalid/);
+      }).should.throw(/Operation/);
 
       done();
     });

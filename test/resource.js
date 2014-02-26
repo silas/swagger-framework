@@ -63,7 +63,7 @@ describe('Resource', function() {
 
       (function() {
         self.resource.setup(self.api);
-      }).should.throw(/invalid/);
+      }).should.throw(/Resource/);
 
       done();
     });
