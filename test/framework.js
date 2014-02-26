@@ -137,7 +137,7 @@ describe('Framework', function() {
 
       (function() {
         self.framework.model({ properties: {} });
-      }).should.throw(/invalid/);
+      }).should.throw(/Validation failed/);
 
       done();
     });

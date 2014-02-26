@@ -65,7 +65,7 @@ describe('Api', function() {
 
       (function() {
         self.api.setup(self.framework);
-      }).should.throw(/Api/);
+      }).should.throw(/Validation failed/);
 
       done();
     });
