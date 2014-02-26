@@ -38,9 +38,6 @@ describe('Docs', function() {
       spec.should.have.property('swaggerVersion');
       spec.swaggerVersion.should.eql('1.2');
 
-      spec.should.have.property('basePath');
-      spec.basePath.should.eql('http://example.org');
-
       spec.should.have.property('apis');
       spec.apis.should.eql([
         { path: '/test', description: 'description' }
@@ -50,7 +47,7 @@ describe('Docs', function() {
       spec.authorizations.should.eql({ oauth2: 'authorizations-ok' });
 
       spec.should.not.have.property('found');
-      Object.keys(spec).length.should.eql(5);
+      Object.keys(spec).length.should.eql(4);
 
       done();
     });
