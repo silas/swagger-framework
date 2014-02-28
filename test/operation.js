@@ -70,6 +70,23 @@ describe('Operation', function() {
       done();
     });
 
+    it('should throw on duplicate parameter', function(done) {
+      var self = this;
+
+      var spec = lodash.cloneDeep(pet.apis[0].operations[0]);
+
+      // add duplicate parameter
+      spec.parameters.push(spec.parameters[0]);
+
+      this.operation.spec = spec;
+
+      (function() {
+        self.operation.setup(self.resource);
+      }).should.throw(/Duplicate parameter name:/);
+
+      done();
+    });
+
     it('should work for valid spec', function(done) {
       this.operation.spec = lodash.cloneDeep(pet.apis[0].operations[0]);
 
