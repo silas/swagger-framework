@@ -54,6 +54,7 @@ describe('Operation', function() {
           framework: {
             env: new Environment(),
           },
+          nicknames: {},
         }
       };
     });
@@ -83,6 +84,20 @@ describe('Operation', function() {
       (function() {
         self.operation.setup(self.resource);
       }).should.throw(/Duplicate parameter name:/);
+
+      done();
+    });
+
+    it('should throw on duplicate nickname', function(done) {
+      var self = this;
+
+      this.operation.spec = lodash.cloneDeep(pet.apis[0].operations[0]);
+
+      this.resource.api.nicknames[this.operation.spec.nickname] = false;
+
+      (function() {
+        self.operation.setup(self.resource);
+      }).should.throw(/Duplicate nickname:/);
 
       done();
     });
