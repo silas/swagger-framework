@@ -6,9 +6,9 @@
   "dependencies": {
     "accepts": "1.0.1",
     "body": "4.4.2",
-    "jjv": "https://github.com/acornejo/jjv/archive/v0.3.4.tar.gz",
     "lodash": "2.4.1",
     "routington": "0.1.2",
+    "swagger-schema": "0.1.0",
     "type-is": "1.0.0"
   },
   "devDependencies": {

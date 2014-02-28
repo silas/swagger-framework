@@ -4,10 +4,11 @@
  * Module dependencies.
  */
 
+var Environment = require('swagger-schema/environment');
+var apiSchema = require('swagger-schema/data/api');
+var modelSchema = require('swagger-schema/data/model');
+var resourceSchema = require('swagger-schema/data/resource');
 var should = require('should');
-
-var Environment = require('../lib/environment');
-var schema = require('../lib/schema');
 
 /**
  * Tests
@@ -25,7 +26,7 @@ describe('schema', function() {
         description: 'Hello API',
       };
 
-      var errors = this.env.validateThrow(schema.swagger.api, data);
+      var errors = this.env.validateThrow(apiSchema, data);
       should.not.exist(errors);
 
       done();
@@ -50,7 +51,7 @@ describe('schema', function() {
         },
       });
 
-      this.env.validateThrow(schema.swagger.resource, data);
+      this.env.validateThrow(resourceSchema, data);
 
       done();
     });
@@ -66,7 +67,7 @@ describe('schema', function() {
         required: ['message'],
       };
 
-      this.env.validateThrow(schema.swagger.model, data);
+      this.env.validateThrow(modelSchema, data);
 
       done();
     });

@@ -4,12 +4,12 @@
  * Module dependencies.
  */
 
+var Environment = require('swagger-schema/environment');
 var lodash = require('lodash');
 var sinon = require('sinon');
 
 var Api = require('../lib/api');
 var Docs = require('../lib/docs');
-var Environment = require('../lib/environment');
 var Framework = require('../lib/framework');
 var Router = require('../lib/framework/router');
 

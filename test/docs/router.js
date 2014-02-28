@@ -4,11 +4,10 @@
  * Module dependencies.
  */
 
+var Environment = require('swagger-schema/environment');
+var declarationSchema = require('swagger-schema/data/api-declaration-schema');
 var express = require('express');
 var request = require('supertest');
-
-var Environment = require('../../lib/environment');
-var schema = require('../../lib/schema');
 
 var fixtures = require('../fixtures');
 
@@ -49,7 +48,7 @@ describe('DocsRouter', function() {
       .end(function(err, res) {
         if (err) throw err;
 
-        self.env.validateThrow(schema.swagger.declaration, res.body);
+        self.env.validateThrow(declarationSchema, res.body);
 
         var body = res.body;
         body.apiVersion.should.eql('1.0.0');

@@ -4,9 +4,9 @@
  * Module dependencies.
  */
 
+var Environment = require('swagger-schema/environment');
 var lodash = require('lodash');
 
-var Environment = require('../lib/environment');
 var Operation = require('../lib/operation');
 
 var pet = require('./fixtures/pet.json');
