@@ -4,7 +4,7 @@ run: exec node example.js
 
 test: |
   if [[ -n "$ROCK_ARGV" ]]; then
-    exec mocha --require should --reporter spec "${ARGV[@]}"
+    exec mocha --recursive --require should --reporter spec "${ARGV[@]}"
   else
     {{ parent }}
   fi
