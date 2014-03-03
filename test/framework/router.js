@@ -72,7 +72,7 @@ describe('FrameworkRouter', function() {
     var path = { petId: 123 };
 
     this.request
-      .get('/pet/' + path.petId)
+      .patch('/pet/' + path.petId)
       .accept('application/soap+xml')
       .expect(406)
       .end(function(err) {
