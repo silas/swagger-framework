@@ -165,7 +165,7 @@ describe('FrameworkRouter', function() {
   });
 
   it('should reject invalid json', function(done) {
-    var body = { body: { bob: 'name' } };
+    var body = { bob: 'name' };
 
     this.request
       .post('/pet')
@@ -181,7 +181,7 @@ describe('FrameworkRouter', function() {
   });
 
   it('should accept valid json', function(done) {
-    var body = { body: newPet() };
+    var body = newPet();
 
     this.request
       .post('/pet')
