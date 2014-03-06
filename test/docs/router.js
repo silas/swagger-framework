@@ -6,7 +6,6 @@
 
 var Environment = require('swagger-schema/environment');
 var declarationSchema = require('swagger-schema/data/api-declaration-schema');
-var express = require('express');
 var request = require('supertest');
 
 var fixtures = require('../fixtures');
@@ -17,15 +16,14 @@ var fixtures = require('../fixtures');
 
 describe('DocsRouter', function() {
   beforeEach(function() {
-    this.app = express();
-    this.app.use('/api-docs', fixtures.framework().docs.dispatcher());
-    this.request = request(this.app);
+    this.app = fixtures.framework().docs.dispatcher();
     this.env = new Environment();
+    this.request = request(this.app);
   });
 
   it('should render api index', function(done) {
     this.request
-      .get('/api-docs')
+      .get('/')
       .expect('Content-Type', /json/)
       .expect(200)
       .end(function(err, res) {
@@ -42,7 +40,7 @@ describe('DocsRouter', function() {
     var self = this;
 
     this.request
-      .get('/api-docs/pet')
+      .get('/pet')
       .expect('Content-Type', /json/)
       .expect(200)
       .end(function(err, res) {
