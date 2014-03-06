@@ -2,6 +2,10 @@ runtime: node010
 
 run: exec node example.js
 
+build: |
+  rm -f npm-shrinkwrap.json
+  {{ parent }}
+
 test: |
   if [[ -n "$ROCK_ARGV" ]]; then
     exec mocha --recursive --require should --reporter spec "${ARGV[@]}"
