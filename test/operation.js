@@ -48,7 +48,7 @@ describe('Operation', function() {
 
   describe('setup', function() {
     beforeEach(function() {
-      this.operation = new Operation();
+      this.operation = new Operation({});
       this.resource = {
         api: {
           framework: {
