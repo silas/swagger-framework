@@ -1,10 +1,9 @@
 runtime: node010
 
-run: exec node example.js
+env:
+  ROCK_NPM_SHRINKWRAP: "false"
 
-build: |
-  rm -f npm-shrinkwrap.json
-  {{ parent }}
+run: exec node example.js
 
 test: |
   if [[ -n "$ROCK_ARGV" ]]; then
