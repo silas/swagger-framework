@@ -26,8 +26,8 @@ function newPet() {
 describe('FrameworkRouter', function() {
   beforeEach(function() {
     this.framework = fixtures.framework();
-    this.app = this.framework.dispatcher();
-    this.request = request(this.app);
+    this.callback = this.framework.callback();
+    this.request = request(this.callback);
   });
 
   it('should respond to OPTIONS request', function(done) {

@@ -96,8 +96,8 @@ if (module.parent) {
 } else {
   var app = express();
 
-  app.use('/api-docs', framework.docs.dispatcher());
-  app.use(framework.dispatcher());
+  app.use('/api-docs', framework.docs.callback());
+  app.use(framework.callback());
 
   app.listen(port, host, function(err) {
     if (err) throw err;
