@@ -149,7 +149,7 @@ describe('Framework', function() {
     });
   });
 
-  describe('callback', function() {
+  describe('dispatcher', function() {
     beforeEach(function() {
       this.framework = newFramework();
     });
@@ -159,24 +159,24 @@ describe('Framework', function() {
 
       this.framework.setup = setup;
 
-      this.framework.callback();
+      this.framework.dispatcher();
 
       setup.called.should.eql(true);
 
       done();
     });
 
-    it('should call router.callback with options', function(done) {
-      var callback = sinon.spy();
+    it('should call router.dispatcher with options', function(done) {
+      var dispatcher = sinon.spy();
       var options = {};
 
-      this.framework.router.callback = callback;
+      this.framework.router.dispatcher = dispatcher;
       this.framework.setup = sinon.spy();
 
-      this.framework.callback(options);
+      this.framework.dispatcher(options);
 
-      callback.called.should.eql(true);
-      callback.args[0][0].should.eql(options);
+      dispatcher.called.should.eql(true);
+      dispatcher.args[0][0].should.eql(options);
 
       done();
     });

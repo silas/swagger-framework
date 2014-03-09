@@ -16,9 +16,9 @@ var fixtures = require('../fixtures');
 
 describe('DocsRouter', function() {
   beforeEach(function() {
-    this.callback = fixtures.framework().docs.callback();
+    this.dispatcher = fixtures.framework().docs.dispatcher();
     this.env = new Environment();
-    this.request = request(this.callback);
+    this.request = request(this.dispatcher);
   });
 
   it('should render api index', function(done) {
