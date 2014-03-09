@@ -78,6 +78,11 @@ describe('DocsRouter', function() {
         );
         operation.type.should.eql('Pet');
 
+        var models = body.models;
+        models.should.have.property('Tag');
+        models.should.have.property('Pet');
+        models.should.have.property('Category');
+
         done();
       });
   });
