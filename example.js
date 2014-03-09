@@ -26,8 +26,8 @@ if (module.parent) {
 } else {
   var app = require('express')();
 
-  app.use('/api-docs', framework.docs.callback());
-  app.use(framework.callback());
+  app.use('/api-docs', framework.docs.dispatcher());
+  app.use(framework.dispatcher());
 
   app.listen(port, host, function(err) {
     if (err) throw err;
