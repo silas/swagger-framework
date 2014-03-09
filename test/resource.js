@@ -6,11 +6,10 @@
 
 var Environment = require('swagger-schema/environment');
 var lodash = require('lodash');
+var pet = require('swagger-schema/fixtures/pet.json');
 
 var Operation = require('../lib/operation');
 var Resource = require('../lib/resource');
-
-var pet = require('./fixtures/pet.json');
 
 /**
  * Tests

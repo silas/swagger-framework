@@ -4,12 +4,11 @@
  * Module dependencies.
  */
 
+var index = require('swagger-schema/fixtures/index.json');
 var lodash = require('lodash');
+var pet = require('swagger-schema/fixtures/pet.json');
 
 var swagger = require('../lib');
-
-var index = require('./fixtures/index.json');
-var pet = require('./fixtures/pet.json');
 
 /**
  * Helper functions.
@@ -27,7 +26,8 @@ exports.framework = function(options) {
 
   index.apis.forEach(function(aSpec) {
     var name = aSpec.path.slice(1);
-    var data = lodash.cloneDeep(require('./fixtures/' + name + '.json'));
+    var data = lodash.cloneDeep(require('swagger-schema/fixtures/' +
+                                        name + '.json'));
 
     lodash.merge(aSpec, lodash.pick(
       data,
