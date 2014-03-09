@@ -133,7 +133,7 @@ describe('FrameworkRouter', function() {
       });
   });
 
-  it('should reject valid query', function(done) {
+  it('should reject invalid query', function(done) {
     var query = { status: 'dancing' };
 
     this.request

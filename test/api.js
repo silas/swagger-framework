@@ -5,9 +5,9 @@
  */
 
 var Environment = require('swagger-schema/environment');
-var index = require('swagger-schema/fixtures/index.json');
+var index = require('swagger-schema/fixtures/index');
 var lodash = require('lodash');
-var pet = require('swagger-schema/fixtures/pet.json');
+var pet = require('swagger-schema/fixtures/pet');
 
 var Api = require('../lib/api');
 var Resource = require('../lib/resource');
