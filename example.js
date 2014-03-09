@@ -24,12 +24,7 @@ var framework = fixtures.framework({ basePath: url });
 if (module.parent) {
   module.exports = framework;
 } else {
-  var app = require('express')();
-
-  app.use('/api-docs', framework.docs.dispatcher());
-  app.use(framework.dispatcher());
-
-  app.listen(port, host, function(err) {
+  framework.server().listen(port, host, function(err) {
     if (err) throw err;
 
     console.log('Server started ' + url + '/');
