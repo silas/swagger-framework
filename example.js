@@ -31,6 +31,7 @@ if (module.parent) {
 
   app.listen(port, host, function(err) {
     if (err) throw err;
+
     console.log('Server started ' + url + '/');
   });
 }
