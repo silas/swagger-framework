@@ -8,7 +8,6 @@ standard Node HTTP server, Express, and probably others.
 ### Example
 
 ``` javascript
-var express = require('express');
 var swagger = require('swagger-framework');
 
 var host = '127.0.0.1';
@@ -28,7 +27,9 @@ var api = framework.api({
   ],
 });
 
-var resource = api.resource({ path: '/pet/{petId}' });
+var resource = api.resource({
+  path: '/pet/{petId}'
+});
 
 var operation = resource.operation(
   {
@@ -94,7 +95,7 @@ framework.model({
 if (module.parent) {
   module.exports = framework;
 } else {
-  var app = express();
+  var app = require('express')();
 
   app.use('/api-docs', framework.docs.callback());
   app.use(framework.callback());

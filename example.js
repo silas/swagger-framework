@@ -4,8 +4,6 @@
  * Module dependencies.
  */
 
-var express = require('express');
-
 var fixtures = require('./test/fixtures');
 var swagger = require('./lib');
 
@@ -26,7 +24,7 @@ var framework = fixtures.framework({ basePath: url });
 if (module.parent) {
   module.exports = framework;
 } else {
-  var app = express();
+  var app = require('express')();
 
   app.use('/api-docs', framework.docs.callback());
   app.use(framework.callback());
