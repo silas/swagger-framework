@@ -1,9 +1,10 @@
 # Swagger Framework [![Build Status](https://travis-ci.org/silas/swagger-framework.png?branch=master)](https://travis-ci.org/silas/swagger-framework)
 
-Swagger Framework for web services.
+Swagger Framework is a module for creating [Swagger spec][spec] validated web
+resources using the standard Node HTTP request listener interface.
 
-It implements the Node HTTP request listener interface, and works with the
-standard Node HTTP server, Express, and probably others.
+It validates and normalizes incoming requests and does basic checking on your
+Swagger spec.
 
 ### Example
 
@@ -106,3 +107,5 @@ if (module.parent) {
 ## License
 
 This work is licensed under the MIT License (see the LICENSE file).
+
+[spec]: https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md#readme
