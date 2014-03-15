@@ -38,7 +38,6 @@ describe('Framework', function() {
       var framework = new Framework(spec);
 
       framework.spec.swaggerVersion.should.eql('1.2');
-      framework.spec.apiVersion.should.eql('0.0.0');
       framework.spec.apis.should.eql([]);
       framework.spec.authorizations.should.eql({});
       framework.options.basePath.should.eql(spec.basePath);
@@ -57,7 +56,6 @@ describe('Framework', function() {
       var framework = Framework(spec);  // jshint ignore:line
 
       framework.spec.swaggerVersion.should.eql('1.2');
-      framework.spec.apiVersion.should.eql('0.0.0');
       framework.spec.apis.should.eql([]);
       framework.spec.authorizations.should.eql({});
       framework.options.basePath.should.eql(spec.basePath);
