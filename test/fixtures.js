@@ -17,8 +17,6 @@ var swagger = require('../lib');
 exports.framework = function(options) {
   options = options || {};
 
-  var setupModels = {};
-
   var framework = swagger.Framework({
     basePath: options.basePath || pet.basePath,
     apiVersion: pet.apiVersion,
@@ -37,9 +35,7 @@ exports.framework = function(options) {
     var api = framework.api(aSpec);
 
     lodash.forOwn(data.models, function(model) {
-      if (setupModels[model.id]) return;
-      framework.model(model);
-      setupModels[model.id] = model;
+      api.model(model);
     });
 
     data.apis.forEach(function(rSpec) {

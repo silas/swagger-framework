@@ -69,7 +69,7 @@ var operation = resource.operation(
   }
 );
 
-framework.model({
+api.model({
   id: 'Pet',
   required: ['id', 'name'],
   properties: {

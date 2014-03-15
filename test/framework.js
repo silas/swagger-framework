@@ -6,7 +6,6 @@
 
 var Environment = require('swagger-schema/environment');
 var index = require('swagger-schema/fixtures/index');
-var lodash = require('lodash');
 var pet = require('swagger-schema/fixtures/pet');
 var sinon = require('sinon');
 
@@ -25,10 +24,6 @@ function newSpec() {
 
 function newFramework() {
   return new Framework(newSpec());
-}
-
-function newModel() {
-  return lodash.cloneDeep(pet.models.Tag);
 }
 
 /**
@@ -52,7 +47,6 @@ describe('Framework', function() {
       framework.router.should.be.an.instanceof(Router);
       framework.apis.should.eql({});
       framework.middleware.should.eql({});
-      framework.models.should.eql({});
 
       done();
     });
@@ -72,7 +66,6 @@ describe('Framework', function() {
       framework.router.should.be.an.instanceof(Router);
       framework.apis.should.eql({});
       framework.middleware.should.eql({});
-      framework.models.should.eql({});
 
       done();
     });
@@ -123,28 +116,6 @@ describe('Framework', function() {
 
       this.framework.api(api);
       this.framework.apis[this.spec.path].should.eql(api);
-
-      done();
-    });
-  });
-
-  describe('model', function() {
-    beforeEach(function() {
-      this.framework = newFramework();
-    });
-
-    it('should throw on invalid model', function(done) {
-      var self = this;
-
-      (function() {
-        self.framework.model({ properties: {} });
-      }).should.throw(/Validation failed/);
-
-      done();
-    });
-
-    it('should register valid models', function(done) {
-      this.framework.model(newModel());
 
       done();
     });

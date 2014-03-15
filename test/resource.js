@@ -49,9 +49,7 @@ describe('Resource', function() {
       this.resource = new Resource({});
       this.api = {
         spec: { path: '/pet' },
-        framework: {
-          env: new Environment(),
-        },
+        env: new Environment(),
       };
     });
 

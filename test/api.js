@@ -13,6 +13,14 @@ var Api = require('../lib/api');
 var Resource = require('../lib/resource');
 
 /**
+ * Helper functions.
+ */
+
+function newModel() {
+  return lodash.cloneDeep(pet.models.Tag);
+}
+
+/**
  * Tests
  */
 
@@ -121,4 +129,32 @@ describe('Api', function() {
       done();
     });
   });
+
+  describe('model', function() {
+    beforeEach(function() {
+      this.api = new Api({
+        path: pet.resourcePath,
+        description: index.apis[0].description,
+        apis: [],
+      });
+      this.spec = lodash.cloneDeep(pet.apis[0]);
+    });
+
+    it('should throw on invalid model', function(done) {
+      var self = this;
+
+      (function() {
+        self.api.model({ properties: {} });
+      }).should.throw(/Validation failed/);
+
+      done();
+    });
+
+    it('should register valid models', function(done) {
+      this.api.model(newModel());
+
+      done();
+    });
+  });
+
 });

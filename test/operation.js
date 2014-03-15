@@ -50,9 +50,7 @@ describe('Operation', function() {
       this.operation = new Operation({});
       this.resource = {
         api: {
-          framework: {
-            env: new Environment(),
-          },
+          env: new Environment(),
           nicknames: {},
         }
       };
