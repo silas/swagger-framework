@@ -1,0 +1,12 @@
+{
+  "title": "Framework",
+  "type": "object",
+  "properties": {
+    "basePath": {
+      "type": "string"
+    },
+    "apiDocsPath": {
+      "type": "string"
+    }
+  }
+}

@@ -19,12 +19,12 @@ var Router = require('../lib/framework/router');
  * Helper functions.
  */
 
-function newOptions() {
+function newSpec() {
   return { basePath: pet.basePath };
 }
 
 function newFramework() {
-  return new Framework(newOptions());
+  return new Framework(newSpec());
 }
 
 function newModel() {
@@ -38,14 +38,15 @@ function newModel() {
 describe('Framework', function() {
   describe('constructor', function() {
     it('should work with new', function(done) {
-      var options = newOptions();
-      var framework = new Framework(options);
+      var spec = newSpec();
+
+      var framework = new Framework(spec);
 
       framework.spec.swaggerVersion.should.eql('1.2');
-      framework.spec.basePath.should.eql(options.basePath);
       framework.spec.apiVersion.should.eql('0.0.0');
       framework.spec.apis.should.eql([]);
       framework.spec.authorizations.should.eql({});
+      framework.options.basePath.should.eql(spec.basePath);
       framework.env.should.be.an.instanceof(Environment);
       framework.docs.should.be.an.instanceof(Docs);
       framework.router.should.be.an.instanceof(Router);
@@ -57,14 +58,15 @@ describe('Framework', function() {
     });
 
     it('should work without new', function(done) {
-      var options = newOptions();
-      var framework = Framework(options);  // jshint ignore:line
+      var spec = newSpec();
+
+      var framework = Framework(spec);  // jshint ignore:line
 
       framework.spec.swaggerVersion.should.eql('1.2');
-      framework.spec.basePath.should.eql(options.basePath);
       framework.spec.apiVersion.should.eql('0.0.0');
       framework.spec.apis.should.eql([]);
       framework.spec.authorizations.should.eql({});
+      framework.options.basePath.should.eql(spec.basePath);
       framework.env.should.be.an.instanceof(Environment);
       framework.docs.should.be.an.instanceof(Docs);
       framework.router.should.be.an.instanceof(Router);
