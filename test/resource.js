@@ -23,7 +23,7 @@ describe('Resource', function() {
       var resource = new Resource(spec);
 
       resource.spec.should.eql(spec);
-      resource.spec.operations.should.eql([]);
+      resource.list.should.eql([]);
       resource.middleware.should.eql({});
       resource.operations.should.eql({});
 
@@ -36,7 +36,7 @@ describe('Resource', function() {
       var resource = Resource(spec);  // jshint ignore:line
 
       resource.spec.should.eql(spec);
-      resource.spec.operations.should.eql([]);
+      resource.list.should.eql([]);
       resource.middleware.should.eql({});
       resource.operations.should.eql({});
 
@@ -48,7 +48,7 @@ describe('Resource', function() {
     beforeEach(function() {
       this.resource = new Resource({});
       this.api = {
-        spec: { path: '/pet' },
+        spec: { resourcePath: '/pet' },
         env: new Environment(),
       };
     });

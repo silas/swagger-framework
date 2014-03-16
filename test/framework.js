@@ -4,8 +4,7 @@
  * Module dependencies.
  */
 
-var Environment = require('swagger-schema/environment');
-var index = require('swagger-schema/fixtures/index');
+var lodash = require('lodash');
 var pet = require('swagger-schema/fixtures/pet');
 var sinon = require('sinon');
 
@@ -41,7 +40,6 @@ describe('Framework', function() {
       framework.spec.apis.should.eql([]);
       framework.spec.authorizations.should.eql({});
       framework.options.basePath.should.eql(spec.basePath);
-      framework.env.should.be.an.instanceof(Environment);
       framework.docs.should.be.an.instanceof(Docs);
       framework.router.should.be.an.instanceof(Router);
       framework.apis.should.eql({});
@@ -59,7 +57,6 @@ describe('Framework', function() {
       framework.spec.apis.should.eql([]);
       framework.spec.authorizations.should.eql({});
       framework.options.basePath.should.eql(spec.basePath);
-      framework.env.should.be.an.instanceof(Environment);
       framework.docs.should.be.an.instanceof(Docs);
       framework.router.should.be.an.instanceof(Router);
       framework.apis.should.eql({});
@@ -93,18 +90,20 @@ describe('Framework', function() {
   describe('api', function() {
     beforeEach(function() {
       this.framework = newFramework();
-      this.spec = {
-        path: pet.resourcePath,
-        description: index.apis[0].description,
-      };
+      this.spec = lodash.omit(
+        pet,
+        'apis',
+        'models'
+      );
+      this.path = this.spec.resourcePath;
     });
 
     it('should create and register an Api', function(done) {
       this.framework.api(this.spec);
 
-      this.framework.apis.should.have.property(this.spec.path);
-      this.framework.apis[this.spec.path].should.be.an.instanceof(Api);
-      this.framework.apis[this.spec.path].spec.should.eql(this.spec);
+      this.framework.apis.should.have.property(this.path);
+      this.framework.apis[this.path].should.be.an.instanceof(Api);
+      this.framework.apis[this.path].spec.should.eql(this.spec);
 
       done();
     });
@@ -113,7 +112,7 @@ describe('Framework', function() {
       var api = new Api(this.spec);
 
       this.framework.api(api);
-      this.framework.apis[this.spec.path].should.eql(api);
+      this.framework.apis[this.path].should.eql(api);
 
       done();
     });

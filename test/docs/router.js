@@ -4,9 +4,8 @@
  * Module dependencies.
  */
 
-var Environment = require('swagger-schema/environment');
-var declarationSchema = require('swagger-schema/data/api-declaration-schema');
 var request = require('supertest');
+var schema = require('swagger-schema/spec');
 
 var fixtures = require('../fixtures');
 
@@ -17,7 +16,6 @@ var fixtures = require('../fixtures');
 describe('DocsRouter', function() {
   beforeEach(function() {
     this.dispatcher = fixtures.framework().docs.dispatcher();
-    this.env = new Environment();
     this.request = request(this.dispatcher);
   });
 
@@ -37,8 +35,6 @@ describe('DocsRouter', function() {
   });
 
   it('should render api declaration', function(done) {
-    var self = this;
-
     this.request
       .get('/pet')
       .expect('Content-Type', /json/)
@@ -46,7 +42,7 @@ describe('DocsRouter', function() {
       .end(function(err, res) {
         if (err) throw err;
 
-        self.env.validateThrow(declarationSchema, res.body);
+        schema.validateThrow('ApiDeclaration', res.body);
 
         var body = res.body;
         body.apiVersion.should.eql('1.0.0');
@@ -66,7 +62,6 @@ describe('DocsRouter', function() {
             {
               description: 'ID of pet that needs to be fetched',
               format: 'int64',
-              items: {},
               maximum: '100000.0',
               minimum: '1.0',
               name: 'petId',

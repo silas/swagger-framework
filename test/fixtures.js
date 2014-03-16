@@ -26,13 +26,11 @@ exports.framework = function(options) {
     var name = aSpec.path.slice(1);
     var data = lodash.cloneDeep(require('swagger-schema/fixtures/' + name));
 
-    lodash.merge(aSpec, lodash.pick(
-      data,
-      'consumes',
-      'produces'
-    ));
+    var apiSpec = lodash.omit(data, 'apis', 'models');
 
-    var api = framework.api(aSpec);
+    lodash.merge(apiSpec, aSpec);
+
+    var api = framework.api(apiSpec);
 
     lodash.forOwn(data.models, function(model) {
       api.model(model);

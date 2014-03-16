@@ -24,9 +24,9 @@ describe('Docs', function() {
           },
         },
         apis: {
-          '/test': { spec: { path: '/test', description: 'description' } },
+          '/test': { options: { path: '/test', description: 'description' }
+          },
         },
-        found: true,
         setup: function() {},
       });
 
@@ -45,9 +45,6 @@ describe('Docs', function() {
 
       spec.should.have.property('authorizations');
       spec.authorizations.should.eql({ oauth2: 'authorizations-ok' });
-
-      spec.should.not.have.property('found');
-      Object.keys(spec).length.should.eql(4);
 
       done();
     });

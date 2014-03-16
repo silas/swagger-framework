@@ -32,7 +32,7 @@ describe('Api', function() {
       var api = new Api(spec);
 
       api.spec.should.eql(spec);
-      api.spec.apis.should.eql([]);
+      api.list.should.eql([]);
       api.middleware.should.eql({});
       api.resources.should.eql({});
 
@@ -45,7 +45,7 @@ describe('Api', function() {
       var api = Api(spec);  // jshint ignore:line
 
       api.spec.should.eql(spec);
-      api.spec.apis.should.eql([]);
+      api.list.should.eql([]);
       api.middleware.should.eql({});
       api.resources.should.eql({});
 
@@ -55,20 +55,24 @@ describe('Api', function() {
 
   describe('setup', function() {
     beforeEach(function() {
-      this.api = new Api({
-        path: pet.resourcePath,
-        description: index.apis[0].description,
-        apis: [],
-      });
+      this.api = new Api(lodash.omit(
+        pet,
+        'apis',
+        'models'
+      ));
       this.framework = {
         env: new Environment(),
+        spec: {},
+        options: {
+          basePath: 'http://localhost',
+        },
       };
     });
 
     it('should throw on invalid spec', function(done) {
       var self = this;
 
-      self.api.spec = { hello: 'world', apis: [] };
+      self.api.spec = { hello: 'world' };
 
       (function() {
         self.api.setup(self.framework);
@@ -89,7 +93,7 @@ describe('Api', function() {
     it('should validate path starts with forward slash', function(done) {
       var self = this;
 
-      self.api.spec.path = 'hello/';
+      self.api.spec.resourcePath = 'hello/';
 
       (function() {
         self.api.setup(self.framework);
@@ -102,7 +106,7 @@ describe('Api', function() {
   describe('resource', function() {
     beforeEach(function() {
       this.api = new Api({
-        path: pet.resourcePath,
+        resourcePath: pet.resourcePath,
         description: index.apis[0].description,
         apis: [],
       });
@@ -133,7 +137,7 @@ describe('Api', function() {
   describe('model', function() {
     beforeEach(function() {
       this.api = new Api({
-        path: pet.resourcePath,
+        resourcePath: pet.resourcePath,
         description: index.apis[0].description,
         apis: [],
       });
