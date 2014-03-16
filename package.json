@@ -13,6 +13,7 @@
     "type-is": "1.0.0"
   },
   "devDependencies": {
+    "istanbul": "0.2.6",
     "jscs": "1.2.4",
     "jshint": "2.4.4",
     "mocha": "1.17.1",

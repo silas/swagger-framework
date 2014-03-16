@@ -11,3 +11,13 @@ test: |
   else
     {{ parent }}
   fi
+
+coverage: |
+  istanbul cover _mocha -- --recursive --require should
+  if type -f open &>/dev/null; then
+    open coverage/lcov-report/index.html
+  fi
+
+clean: |
+  {{ parent }}
+  rm -fr coverage
