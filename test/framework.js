@@ -38,7 +38,6 @@ describe('Framework', function() {
 
       framework.spec.swaggerVersion.should.eql('1.2');
       framework.spec.apis.should.eql([]);
-      framework.spec.authorizations.should.eql({});
       framework.options.basePath.should.eql(spec.basePath);
       framework.docs.should.be.an.instanceof(Docs);
       framework.router.should.be.an.instanceof(Router);
@@ -55,7 +54,6 @@ describe('Framework', function() {
 
       framework.spec.swaggerVersion.should.eql('1.2');
       framework.spec.apis.should.eql([]);
-      framework.spec.authorizations.should.eql({});
       framework.options.basePath.should.eql(spec.basePath);
       framework.docs.should.be.an.instanceof(Docs);
       framework.router.should.be.an.instanceof(Router);
