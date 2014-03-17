@@ -148,6 +148,85 @@ describe('FrameworkRouter', function() {
       });
   });
 
+  it('should normalize allowMultiple query to an array', function(done) {
+    var query = { tag: ['one'] };
+
+    this.request
+      .get('/pet/findByTags')
+      .query({ tag: 'one' })
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end(function(err, res) {
+        if (err) throw err;
+
+        res.body.request.should.eql({
+          query: query,
+        });
+
+        done();
+      });
+  });
+
+  it('should accept multiple query parameters', function(done) {
+    var query = { tag: ['one', 'two'] };
+
+    this.request
+      .get('/pet/findByTags')
+      .query('tag=one&tag=two')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end(function(err, res) {
+        if (err) throw err;
+
+        res.body.request.should.eql({
+          query: query,
+        });
+
+        done();
+      });
+  });
+
+  it('should accept valid headers', function(done) {
+    this.request
+      .del('/pet/47')
+      .set('x-ignore', 'true')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end(function(err, res) {
+        if (err) throw err;
+
+        var header = res.body.request.header;
+
+        header.should.have.property('x-ignore');
+        header['x-ignore'].should.eql(true);
+
+        done();
+      });
+  });
+
+  it('should accept multiple header parameters', function(done) {
+    var req = this.request
+      .post('/pet/47')
+      .type('form')
+      .send({ name: 'nameName', status: 'statusStatus' });
+
+    req.request().setHeader('x-ignore', ['name', 'status']);
+
+    req
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end(function(err, res) {
+        if (err) throw err;
+
+        var header = res.body.request.header;
+
+        header.should.have.property('x-ignore');
+        header['x-ignore'].should.eql(['name', 'status']);
+
+        done();
+      });
+  });
+
   it('should reject unsupported Content-Type', function(done) {
     var body = { body: newPet() };
 
@@ -228,10 +307,13 @@ describe('FrameworkRouter', function() {
       .end(function(err, res) {
         if (err) throw err;
 
-        res.body.request.should.eql({
-          path: { petId: 10 },
-          form: form,
-        });
+        res.body.should.have.property('request');
+
+        var request = res.body.request;
+        request.should.have.property('path');
+        request.path.should.eql({ petId: 10 });
+        request.should.have.property('form');
+        request.form.should.eql(form);
 
         done();
       });
