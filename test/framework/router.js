@@ -135,6 +135,24 @@ describe('FrameworkRouter', function() {
       });
   });
 
+  it('should use default query', function(done) {
+    var query = { status: 'available' };
+
+    this.request
+      .get('/pet/findByStatus')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end(function(err, res) {
+        if (err) throw err;
+
+        res.body.request.should.eql({
+          query: query,
+        });
+
+        done();
+      });
+  });
+
   it('should reject invalid query', function(done) {
     var query = { status: 'dancing' };
 
