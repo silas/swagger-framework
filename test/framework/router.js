@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 
+var lodash = require('lodash');
 var request = require('supertest');
 
 var fixtures = require('../fixtures');
@@ -116,10 +117,11 @@ describe('FrameworkRouter', function() {
 
   it('should accept valid query', function(done) {
     var query = { status: 'pending' };
+    var queryExtra = lodash.merge({ some: 'extra' }, query);
 
     this.request
       .get('/pet/findByStatus')
-      .query(query)
+      .query(queryExtra)
       .expect('Content-Type', /json/)
       .expect(200)
       .end(function(err, res) {
@@ -195,10 +197,9 @@ describe('FrameworkRouter', function() {
       .end(function(err, res) {
         if (err) throw err;
 
-        var header = res.body.request.header;
-
-        header.should.have.property('x-ignore');
-        header['x-ignore'].should.eql(true);
+        res.body.request.header.should.eql({
+          'x-ignore': true,
+        });
 
         done();
       });
@@ -218,10 +219,9 @@ describe('FrameworkRouter', function() {
       .end(function(err, res) {
         if (err) throw err;
 
-        var header = res.body.request.header;
-
-        header.should.have.property('x-ignore');
-        header['x-ignore'].should.eql(['name', 'status']);
+        res.body.request.header.should.eql({
+          'x-ignore': ['name', 'status'],
+        });
 
         done();
       });
@@ -261,15 +261,18 @@ describe('FrameworkRouter', function() {
 
   it('should accept valid json', function(done) {
     var body = newPet();
+    var bodyExtra = lodash.merge({ some: 'extra' }, body);
 
     this.request
       .post('/pet')
       .type('json')
-      .send(body)
+      .send(bodyExtra)
       .expect('Content-Type', /json/)
       .expect(200)
       .end(function(err, res) {
         if (err) throw err;
+
+        res.body.should.not.have.property('some');
 
         res.body.request.should.eql({
           body: body,
@@ -297,11 +300,12 @@ describe('FrameworkRouter', function() {
 
   it('should accept valid form', function(done) {
     var form = { name: 'Fluffy' };
+    var formExtra = lodash.merge({ some: 'extra' }, form);
 
     this.request
       .post('/pet/10')
       .type('form')
-      .send(form)
+      .send(formExtra)
       .expect('Content-Type', /json/)
       .expect(200)
       .end(function(err, res) {
