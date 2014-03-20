@@ -1,0 +1,10 @@
+{
+  "path": "/pet",
+  "description": "Manage pets",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ]
+}
