@@ -4,13 +4,10 @@
   "description": "Express Swagger Framework example",
   "main": "app.js",
   "scripts": {
-    "test": "true"
+    "start": "node app.js"
   },
   "author": "Silas Sewell <silas@sewell.org>",
   "license": "MIT",
-  "scripts": {
-    "start": "node app.js"
-  },
   "dependencies": {
     "express": "^3.4.8",
     "swagger-framework": "*"
