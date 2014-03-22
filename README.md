@@ -1,12 +1,78 @@
 # Swagger Framework [![Build Status](https://travis-ci.org/silas/swagger-framework.png?branch=master)](https://travis-ci.org/silas/swagger-framework)
 
-Swagger Framework is a module for creating [Swagger spec][spec] validated web
-resources using the standard Node HTTP request listener interface.
+Swagger Framework is a module for creating [Swagger Specification][spec] validated web resources using the standard Node HTTP request listener interface.
 
-It validates and normalizes incoming requests and does basic checking on your
-Swagger spec.
+It validates and normalizes incoming requests, validates your Swagger Specification, and generates the documentation endpoint.
 
-### Example
+ * [Documentation](#documentation)
+ * [Example](#example)
+   * [Framework](#framework)
+   * [Api](#api)
+   * [Resource](#resource)
+   * [Operation](#operation)
+ * [License](#license)
+
+## Documentation
+
+<a name="framework"/>
+#### Class: swagger.Framework(spec, [options])
+
+This is a container for all the Api's and contains helper methods for serving HTTP resources and documentation.
+
+<a name="framework-setup"/>
+#### framework.setup()
+
+Setup and validate resources attached to framework. It is automatically called by `framework.dispatcher` and `framework.server`.
+
+<a name="framework-api"/>
+#### framework.api(spec, [options])
+
+Declare an Api using the [Swagger API Declaration](https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md#52-api-declaration) attributes.
+
+<a name="framework-api-instance"/>
+#### framework.api(api)
+
+Attach an instantiated `Api` class to the `Framework`.
+
+<a name="framework-dispatcher"/>
+#### framework.dispatcher([options])
+
+Returns a function that implements the `requestListener` interface (`function(req, res)`) and will gracefully use Connect/Express style `next` when available.
+
+``` javascript
+http.createServer(framework.dispatcher()).listen(8000);
+```
+
+<a name="framework-server"/>
+#### framework.server([options])
+
+Create and return an `http.Server` which serves apis on `/` and documentation on `/api-docs`.
+
+<a name="api"/>
+#### Class: swagger.Api(spec, [options])
+
+<a name="api-resource"/>
+#### api.resource(spec, [options])
+
+<a name="api-resource-instance"/>
+#### api.resource(resource)
+
+<a name="api-model"/>
+#### api.model(spec)
+
+<a name="resource"/>
+#### Class: swagger.Resource(spec, [options])
+
+<a name="resource-operation"/>
+#### resource.operation(spec, [options], [callback])
+
+<a name="resource-operation-instance"/>
+#### resource.operation(operation)
+
+<a name="operation"/>
+#### Class: swagger.Operation(spec, [options], [callback...])
+
+## Example
 
 ``` javascript
 var swagger = require('swagger-framework');
@@ -103,53 +169,6 @@ if (module.parent) {
   });
 }
 ```
-
-## API
-
-<a name="framework"/>
-#### Class: swagger.Framework(spec, [options])
-
-This is a container for all the Api's and contains helper methods for serving HTTP resources and documentation.
-
-#### framework.setup()
-
-Setup and validate resources attached to framework. It is automatically called by `framework.dispatcher` and `framework.server`.
-
-#### framework.api(spec, [options])
-
-Declare an Api using the [Swagger API Declaration](https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md#52-api-declaration) attributes.
-
-#### framework.api(api)
-
-Attach an instantiated `Api` class to the `Framework`.
-
-#### framework.dispatcher([options])
-
-Returns a function that implements the `requestListener` interface (`function(req, res)`) and will gracefully use Connect/Express style `next` when available.
-
-``` javascript
-http.createServer(framework.dispatcher()).listen(8000);
-```
-
-#### framework.server([options])
-
-Create and return an `http.Server` which serves apis on `/` and documentation on `/api-docs`.
-
-#### Class: swagger.Api(spec, [options])
-
-#### api.resource(spec, [options])
-
-#### api.resource(resource)
-
-#### api.model(spec)
-
-#### Class: swagger.Resource(spec, [options])
-
-#### resource.operation(spec, [options], [callback])
-
-#### resource.operation(operation)
-
-#### Class: swagger.Operation(spec, [options], [callback...])
 
 ## License
 
