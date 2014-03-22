@@ -106,33 +106,49 @@ if (module.parent) {
 
 ## API
 
-### Class: swagger.Framework(spec, [options])
+#### Class: swagger.Framework(spec, [options])
 
-### framework.setup()
+This is a container for all the Api's and contains helper methods for serving HTTP resources and documentation.
 
-### framework.api(spec, [options])
+#### framework.setup()
 
-### framework.api(api)
+Setup and validate all resources, this is automatically called by `framework.dispatcher` and `framework.server`.
 
-### framework.dispatcher([options])
+#### framework.api(spec, [options])
 
-### framework.server([options])
+Declare an Api using the [Swagger API Declaration](https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md#52-api-declaration) attributes.
 
-### Class: swagger.Api(spec, [options])
+#### framework.api(api)
 
-### api.resource(spec, [options])
+Attach an instantiated `Api` class to the `Framework`.
 
-### api.resource(resource)
+#### framework.dispatcher([options])
 
-### api.model(spec)
+Returns a function that implements the `requestListener` interface (`function(req, res)`) and will gracefully use Connect/Express style `next` when available.
 
-### Class: swagger.Resource(spec, [options])
+``` javascript
+http.createServer(framework.dispatcher()).listen(8000);
+```
 
-### resource.operation(spec, [options], [callback])
+#### framework.server([options])
 
-### resource.operation(operation)
+Create and return an `http.Server` which serves apis on `/` and documentation on `/api-docs`.
 
-### Class: swagger.Operation(spec, [options], [callback...])
+#### Class: swagger.Api(spec, [options])
+
+#### api.resource(spec, [options])
+
+#### api.resource(resource)
+
+#### api.model(spec)
+
+#### Class: swagger.Resource(spec, [options])
+
+#### resource.operation(spec, [options], [callback])
+
+#### resource.operation(operation)
+
+#### Class: swagger.Operation(spec, [options], [callback...])
 
 ## License
 
