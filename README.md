@@ -15,7 +15,7 @@ It validates and normalizes incoming requests, validates your Swagger Specificat
 ## Documentation
 
 <a name="framework"/>
-#### Class: swagger.Framework(spec, [options])
+### Class: swagger.Framework(spec, [options])
 
 The Framework class is a container for Swagger API declarations. It has helper methods for serving HTTP resources and the documentation endpoints.
 
@@ -53,7 +53,7 @@ http.createServer(framework.dispatcher()).listen(8000);
 Return an [http.Server](http://nodejs.org/api/http.html#http_class_http_server) which serves API's on `/` and the documentation endpoint  `/api-docs`.
 
 <a name="api"/>
-#### Class: swagger.Api(spec, [options])
+### Class: swagger.Api(spec, [options])
 
 Declare an Api using the [Swagger API Declaration](https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md#52-api-declaration) specification.
 
@@ -77,7 +77,7 @@ Attach Resource instance to the Api.
 Declare a Model using the [Swagger Model Object](https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md#527-model-object) specification.
 
 <a name="resource"/>
-#### Class: swagger.Resource(spec, [options])
+### Class: swagger.Resource(spec, [options])
 
 Declare a Resource using the [Swagger API Object](https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md#522-api-object) specification.
 
@@ -96,7 +96,7 @@ See the [Operation](#operation) class.
 Attach Operation instance to the Resource.
 
 <a name="operation"/>
-#### Class: swagger.Operation(spec, [options], [callback...])
+### Class: swagger.Operation(spec, [options], [callback...])
 
 Declare an Operation using the [Swagger Operation Object](https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md#523-operation-object) specification.
 
