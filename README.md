@@ -5,11 +5,11 @@ Swagger Framework is a module for creating [Swagger Specification][spec] validat
 It validates and normalizes incoming requests, validates your Swagger Specification, and generates the documentation endpoint.
 
  * [Documentation](#documentation)
- * [Example](#example)
    * [Framework](#framework)
    * [Api](#api)
    * [Resource](#resource)
    * [Operation](#operation)
+ * [Example](#example)
  * [License](#license)
 
 ## Documentation
@@ -17,27 +17,31 @@ It validates and normalizes incoming requests, validates your Swagger Specificat
 <a name="framework"/>
 #### Class: swagger.Framework(spec, [options])
 
-This is a container for all the Api's and contains helper methods for serving HTTP resources and documentation.
+The Framework class is a container for Swagger API declarations. It has helper methods for serving HTTP resources and the documentation endpoints.
 
 <a name="framework-setup"/>
 #### framework.setup()
 
-Setup and validate resources attached to framework. It is automatically called by `framework.dispatcher` and `framework.server`.
+Validates resources attached to framework. This is automatically called by `framework.dispatcher` and `framework.server`.
 
 <a name="framework-api"/>
 #### framework.api(spec, [options])
 
-Declare an Api using the [Swagger API Declaration](https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md#52-api-declaration) attributes.
+Declare and attach Api to the Framework.
+
+See the [Api](#api) class.
 
 <a name="framework-api-instance"/>
 #### framework.api(api)
 
-Attach an instantiated `Api` class to the `Framework`.
+Attach Api instance to the Framework.
 
 <a name="framework-dispatcher"/>
 #### framework.dispatcher([options])
 
-Returns a function that implements the `requestListener` interface (`function(req, res)`) and will gracefully use Connect/Express style `next` when available.
+Returns a function that implements the Node HTTP [requestListener](http://nodejs.org/api/http.html#http_http_createserver_requestlistener) interface.
+
+It also supports the Express/Connect style next argument if passed.
 
 ``` javascript
 http.createServer(framework.dispatcher()).listen(8000);
@@ -46,31 +50,55 @@ http.createServer(framework.dispatcher()).listen(8000);
 <a name="framework-server"/>
 #### framework.server([options])
 
-Create and return an `http.Server` which serves apis on `/` and documentation on `/api-docs`.
+Return an [http.Server](http://nodejs.org/api/http.html#http_class_http_server) which serves API's on `/` and the documentation endpoint  `/api-docs`.
 
 <a name="api"/>
 #### Class: swagger.Api(spec, [options])
 
+Declare an Api using the [Swagger API Declaration](https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md#52-api-declaration) specification.
+
+You should not include the `apis` attribute.
+
 <a name="api-resource"/>
 #### api.resource(spec, [options])
+
+Declare and attach Resource to the Api.
+
+See the [Resource](#resource) class.
 
 <a name="api-resource-instance"/>
 #### api.resource(resource)
 
+Attach Resource instance to the Api.
+
 <a name="api-model"/>
 #### api.model(spec)
+
+Declare a Model using the [Swagger Model Object](https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md#527-model-object) specification.
 
 <a name="resource"/>
 #### Class: swagger.Resource(spec, [options])
 
+Declare a Resource using the [Swagger API Object](https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md#522-api-object) specification.
+
+You should not include the `operations` attribute.
+
 <a name="resource-operation"/>
 #### resource.operation(spec, [options], [callback])
+
+Declare and attach Operation to the Resource.
+
+See the [Operation](#operation) class.
 
 <a name="resource-operation-instance"/>
 #### resource.operation(operation)
 
+Attach Operation instance to the Resource.
+
 <a name="operation"/>
 #### Class: swagger.Operation(spec, [options], [callback...])
+
+Declare an Operation using the [Swagger Operation Object](https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md#523-operation-object) specification.
 
 ## Example
 
