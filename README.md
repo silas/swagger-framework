@@ -5,14 +5,15 @@ Swagger Framework is a module for creating [Swagger Specification][spec] validat
 It validates and normalizes incoming requests, validates your Swagger Specification, and generates the documentation endpoint.
 
  * [Documentation](#documentation)
-   * [Framework](#framework)
-   * [Api](#api)
-   * [Resource](#resource)
-   * [Operation](#operation)
  * [Example](#example)
  * [License](#license)
 
 ## Documentation
+
+ * [Framework](#framework)
+ * [Api](#api)
+ * [Resource](#resource)
+ * [Operation](#operation)
 
 <a name="framework"/>
 ### Class: swagger.Framework(spec, [options])
@@ -31,9 +32,7 @@ Validates resources attached to framework. This is automatically called by [fram
 <a name="framework-api"/>
 #### framework.api(spec, [options])
 
-Declare and attach Api.
-
-See the [Api](#api) class.
+Declare and attach [Api](#api) class.
 
 <a name="framework-api-instance"/>
 #### framework.api(api)
@@ -66,9 +65,7 @@ You should not include the `apis` attribute.
 <a name="api-resource"/>
 #### api.resource(spec, [options])
 
-Declare and attach Resource.
-
-See the [Resource](#resource) class.
+Declare and attach [Resource](#resource) class.
 
 <a name="api-resource-instance"/>
 #### api.resource(resource)
@@ -90,14 +87,12 @@ You should not include the `operations` attribute.
 <a name="resource-operation"/>
 #### resource.operation(spec, [options], [callback])
 
-Declare and attach Operation.
-
-See the [Operation](#operation) class.
+Declare and attach [Operation](#operation) class.
 
 <a name="resource-operation-instance"/>
 #### resource.operation(operation)
 
-Attach Operation instance.
+Attach [Operation](#operation) instance.
 
 <a name="operation"/>
 ### Class: swagger.Operation(spec, [options], [callback...])
