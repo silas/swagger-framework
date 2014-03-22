@@ -17,31 +17,35 @@ It validates and normalizes incoming requests, validates your Swagger Specificat
 <a name="framework"/>
 ### Class: swagger.Framework(spec, [options])
 
-The Framework class is a container for Swagger API declarations. It has helper methods for serving HTTP resources and the documentation endpoints.
+Declare a Framework using the [Swagger API Resource Listing](https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md#51-resource-listing) specification.
+
+You should not include the `apis` attribute.
+
+This acts as a container for all the API's and contains helper methods for serving HTTP resources and the documentation endpoints.
 
 <a name="framework-setup"/>
 #### framework.setup()
 
-Validates resources attached to framework. This is automatically called by `framework.dispatcher` and `framework.server`.
+Validates resources attached to framework. This is automatically called by [framework.dispatcher](#framework-dispatcher) and [framework.server](#framework-server).
 
 <a name="framework-api"/>
 #### framework.api(spec, [options])
 
-Declare and attach Api to the Framework.
+Declare and attach Api.
 
 See the [Api](#api) class.
 
 <a name="framework-api-instance"/>
 #### framework.api(api)
 
-Attach Api instance to the Framework.
+Attach [Api](#api) instance.
 
 <a name="framework-dispatcher"/>
 #### framework.dispatcher([options])
 
 Returns a function that implements the Node HTTP [requestListener](http://nodejs.org/api/http.html#http_http_createserver_requestlistener) interface.
 
-It also supports the Express/Connect style next argument if passed.
+It also supports the Express/Connect style `next` argument.
 
 ``` javascript
 http.createServer(framework.dispatcher()).listen(8000);
@@ -50,7 +54,7 @@ http.createServer(framework.dispatcher()).listen(8000);
 <a name="framework-server"/>
 #### framework.server([options])
 
-Return an [http.Server](http://nodejs.org/api/http.html#http_class_http_server) which serves API's on `/` and the documentation endpoint  `/api-docs`.
+Returns an [http.Server](http://nodejs.org/api/http.html#http_class_http_server) instance which serves API's on `/` and the documentation endpoint on `/api-docs`.
 
 <a name="api"/>
 ### Class: swagger.Api(spec, [options])
@@ -62,14 +66,14 @@ You should not include the `apis` attribute.
 <a name="api-resource"/>
 #### api.resource(spec, [options])
 
-Declare and attach Resource to the Api.
+Declare and attach Resource.
 
 See the [Resource](#resource) class.
 
 <a name="api-resource-instance"/>
 #### api.resource(resource)
 
-Attach Resource instance to the Api.
+Attach [Resource](#resource) instance.
 
 <a name="api-model"/>
 #### api.model(spec)
@@ -86,14 +90,14 @@ You should not include the `operations` attribute.
 <a name="resource-operation"/>
 #### resource.operation(spec, [options], [callback])
 
-Declare and attach Operation to the Resource.
+Declare and attach Operation.
 
 See the [Operation](#operation) class.
 
 <a name="resource-operation-instance"/>
 #### resource.operation(operation)
 
-Attach Operation instance to the Resource.
+Attach Operation instance.
 
 <a name="operation"/>
 ### Class: swagger.Operation(spec, [options], [callback...])
