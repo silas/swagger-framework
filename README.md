@@ -106,13 +106,13 @@ if (module.parent) {
 
 ## API
 
-#### Class: swagger.Framework(spec, [options])
+<a name="framework"/>#### Class: swagger.Framework(spec, [options])
 
 This is a container for all the Api's and contains helper methods for serving HTTP resources and documentation.
 
 #### framework.setup()
 
-Setup and validate all resources, this is automatically called by `framework.dispatcher` and `framework.server`.
+Setup and validate resources attached to framework. It is automatically called by `framework.dispatcher` and `framework.server`.
 
 #### framework.api(spec, [options])
 
