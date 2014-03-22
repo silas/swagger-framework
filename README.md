@@ -46,14 +46,23 @@ Returns a function that implements the Node HTTP [requestListener](http://nodejs
 
 It also supports the Express/Connect style `next` argument.
 
-``` javascript
-http.createServer(framework.dispatcher()).listen(8000);
+**Example (Express)**
+
+```javascript
+app.use'/api-docs', framework.docs.dispatcher());
+app.use('/', framework.dispatcher());
 ```
 
 <a name="framework-server"/>
 #### framework.server([options])
 
 Returns an [http.Server](http://nodejs.org/api/http.html#http_class_http_server) instance which serves API's on `/` and the documentation endpoint on `/api-docs`.
+
+**Example**
+
+```javascript
+framework.server().listen(8000);
+```
 
 <a name="api"/>
 ### Class: swagger.Api(spec, [options])
