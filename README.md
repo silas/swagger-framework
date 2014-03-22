@@ -106,7 +106,7 @@ if (module.parent) {
 
 ## API
 
-<a name="framework"/>#### Class: swagger.Framework(spec, [options])
+#### Class: swagger.Framework(spec, [options]) <a name="framework"/>
 
 This is a container for all the Api's and contains helper methods for serving HTTP resources and documentation.
 
