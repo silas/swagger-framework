@@ -104,6 +104,36 @@ if (module.parent) {
 }
 ```
 
+## API
+
+### Class: swagger.Framework(spec, [options])
+
+### framework.setup()
+
+### framework.api(spec, [options])
+
+### framework.api(api)
+
+### framework.dispatcher([options])
+
+### framework.server([options])
+
+### Class: swagger.Api(spec, [options])
+
+### api.resource(spec, [options])
+
+### api.resource(resource)
+
+### api.model(spec)
+
+### Class: swagger.Resource(spec, [options])
+
+### resource.operation(spec, [options], [callback])
+
+### resource.operation(operation)
+
+### Class: swagger.Operation(spec, [options], [callback...])
+
 ## License
 
 This work is licensed under the MIT License (see the LICENSE file).
