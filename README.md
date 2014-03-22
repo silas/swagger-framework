@@ -49,7 +49,7 @@ It also supports the Express/Connect style `next` argument.
 **Example (Express)**
 
 ```javascript
-app.use'/api-docs', framework.docs.dispatcher());
+app.use('/api-docs', framework.docs.dispatcher());
 app.use('/', framework.dispatcher());
 ```
 
@@ -109,6 +109,8 @@ Attach [Operation](#operation) instance.
 Declare an Operation using the [Swagger Operation Object](https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md#523-operation-object) specification.
 
 ## Example
+
+See more in the [examples](https://github.com/silas/swagger-framework/tree/master/examples) directory.
 
 ``` javascript
 var swagger = require('swagger-framework');

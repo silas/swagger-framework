@@ -1,0 +1,14 @@
+{
+  "name": "basic-swagger-framework",
+  "version": "0.0.0",
+  "description": "Basic Swagger Framework example",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Silas Sewell <silas@sewell.org>",
+  "license": "MIT",
+  "dependencies": {
+    "swagger-framework": "*"
+  }
+}
