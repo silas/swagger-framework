@@ -130,14 +130,28 @@ This is an instantiated [Accepts](https://github.com/expressjs/accepts#api) clas
 <a name="sf-body"/>
 #### sf.body
 
+This is an object of body values. It has already been validated and normalized against the Swagger specification.
+
+Additional values are discarded unless the `removeBody` option is set to `false`.
+
 <a name="sf-form"/>
 #### sf.form
+
+This is an object of form values. It has already been validated and normalized against the Swagger specification.
+
+Additional values are discarded unless the `removeForm` option is set to `false`.
 
 <a name="sf-header"/>
 #### sf.header
 
+This is an object of headers. It has already been validated and normalized against the Swagger specification.
+
+Additional headers are discarded unless the `removeHeader` option is set to `false`.
+
 <a name="sf-path"/>
 #### sf.path
+
+This is an object of path segments. It has already been validated and normalized against the Swagger specification.
 
 <a name="sf-produce"/>
 #### sf.produce
@@ -154,6 +168,12 @@ This formats and replies to the HTTP request.
 <a name="sf-reply-error"/>
 #### sf.reply([statusCode], err)
 
+This formats and replies to the HTTP request.
+
+`statusCode` should be a numeric HTTP response code (defaults to 500).
+
+`err` should be an instance of `Error`. If `err.statusCode` is defined it will be used as the return status code. If `err.expose` is truthy then `err.toJSON()` (if defined) or `err.message` will be set as the response body.
+
 <a name="sf-responseMessage"/>
 #### Callback: sf.responseMessage(obj)
 
@@ -161,7 +181,7 @@ This is a callback that you can attach to the `sf` attribute to format `reply` c
 
 It should accept an object that contains `statusCode`, `body`, and `args`. `statusCode` and `body` are the response attributes that `reply` interpreted from the caller. `args` is an array of the actual arguments.
 
-`responseMessage` should either return an object with `statusCode` and `body`, or a `falsy` value and handle the response itself.
+`responseMessage` should either return an object with `statusCode` and `body`, or a falsy value and handle the response itself.
 
 <a name="sf-query"/>
 #### sf.query
