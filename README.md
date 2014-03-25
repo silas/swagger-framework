@@ -118,7 +118,7 @@ The [Operation](#operation) class takes a callback that will be called when an H
 This function has an Express-style signature (`function(req, res, next)`) where `req` and `res` are standard Node [http](http://nodejs.org/api/http.html) objects (or whatever your framework passes it). `next` is a callback that can be called to skip the current handler, or with an `Error` parameter to stop execution and activate the error handler. If you're using a framework (i.e. Express) that supports `next` then calls will proprogate back to the framework.
 
 <a name="sf"/>
-### req.sf and res.sf
+### sf
 
 This object is attached to the `req` and `res` instances. It is used to pass state between middleware and includes helper functions.
 
