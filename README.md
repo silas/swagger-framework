@@ -15,7 +15,7 @@ It validates and normalizes incoming requests, validates your Swagger Specificat
  * [Resource](#resource)
  * [Operation](#operation)
  * [Request Handler](#request-handler)
- * [req.sf and res.sf](#sf)
+   * [sf](#sf)
 
 <a name="framework"/>
 ### Class: swagger.Framework(spec, [options])
