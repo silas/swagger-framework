@@ -14,7 +14,8 @@ It validates and normalizes incoming requests, validates your Swagger Specificat
  * [Api](#api)
  * [Resource](#resource)
  * [Operation](#operation)
- * [sf](#sf)
+ * [Request Handler](#request-handler)
+ * [req.sf and res.sf](#sf)
 
 <a name="framework"/>
 ### Class: swagger.Framework(spec, [options])
@@ -110,19 +111,21 @@ Attaches [Operation](#operation) instance.
 Declares an Operation using the [Swagger Operation Object](https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md#523-operation-object) specification.
 
 <a name="request-handler"/>
-### Callback: Request Handler
+### Request Handler
 
 The [Operation](#operation) class takes a callback that will be called when an HTTP request matches the declared API, Resource, Operation, and passes all validation checks.
 
 This function has an Express-style signature (`function(req, res, next)`) where `req` and `res` are standard Node [http](http://nodejs.org/api/http.html) objects (or whatever your framework passes it). `next` is a callback that can be called to skip the current handler, or with an `Error` parameter to stop execution and activate the error handler. If you're using a framework (i.e. Express) that supports `next` then calls will proprogate back to the framework.
 
 <a name="sf"/>
-### sf
+### req.sf and res.sf
 
-Swagger Framework attaches an `sf` object to `req` and `res` instances. It is used to pass state between Swagger Framework middleware and includes helper functions.
+This object is attached to the `req` and `res` instances. It is used to pass state between middleware and includes helper functions.
 
 <a name="sf-accept"/>
 #### sf.accept
+
+This is an instantiated [Accepts](https://github.com/expressjs/accepts#api) class.
 
 <a name="sf-body"/>
 #### sf.body
@@ -163,9 +166,9 @@ It should accept an object that contains `statusCode`, `body`, and `args`. `stat
 <a name="sf-query"/>
 #### sf.query
 
-This is an object of the request query parameters. They have already been validated and normalized to the type described in the Swagger specification.
+This is an object of query parameters. It has already been validated and normalized against the Swagger specification.
 
-Extra query parameters are discarded unless the `removeQuery` option is set to `false`.
+Additional query parameters are discarded unless the `removeQuery` option is set to `false`.
 
 <a name="sf-url"/>
 #### sf.url
