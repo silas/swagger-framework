@@ -101,15 +101,27 @@ describe('FrameworkRouter', function() {
       });
   });
 
-  it('should accept valid path', function(done) {
+  it('should reject invalid path', function(done) {
     var path = { petId: 'abc' };
 
     this.request
       .get('/pet/' + path.petId)
       .expect('Content-Type', /json/)
       .expect(400)
-      .end(function(err) {
+      .end(function(err, res) {
         if (err) throw err;
+
+        res.body.should.eql({
+          message: 'Validation failed',
+          errors: [
+            {
+              code: 'INVALID_TYPE',
+              message: 'Invalid type: string should be integer',
+              data: 'abc',
+              path: '$.path.petId',
+            },
+          ],
+        });
 
         done();
       });
