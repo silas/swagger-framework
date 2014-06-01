@@ -86,7 +86,7 @@ describe('Resource', function() {
 
       (function() {
         self.resource.setup(self.api);
-      }).should.throw(/path must start with \//);
+      }).should.throw(/Validation failed/);
 
       done();
     });

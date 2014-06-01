@@ -97,7 +97,7 @@ describe('Api', function() {
 
       (function() {
         self.api.setup(self.framework);
-      }).should.throw(/path must start with \//);
+      }).should.throw(/Validation failed/);
 
       done();
     });

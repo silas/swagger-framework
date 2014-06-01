@@ -7,6 +7,7 @@
 var index = require('swagger-schema/fixtures/index');
 var lodash = require('lodash');
 var pet = require('swagger-schema/fixtures/pet');
+var url = require('url');
 
 var swagger = require('../lib');
 
@@ -23,7 +24,7 @@ exports.framework = function(options) {
   });
 
   index.apis.forEach(function(aSpec) {
-    var name = aSpec.path.slice(1);
+    var name = url.parse(aSpec.path).path.slice(1);
     var data = lodash.cloneDeep(require('swagger-schema/fixtures/' + name));
 
     var apiSpec = lodash.omit(data, 'apis', 'models');
