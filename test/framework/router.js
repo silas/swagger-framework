@@ -115,7 +115,7 @@ describe('FrameworkRouter', function() {
           message: 'Validation failed',
           errors: [
             {
-              code: 'INVALID_TYPE',
+              code: 'VALIDATION_INVALID_TYPE',
               message: 'Invalid type: string should be integer',
               data: 'abc',
               path: '$.path.petId',
