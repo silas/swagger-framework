@@ -2,7 +2,7 @@
 
 Swagger Framework is a module for creating [Swagger Specification][spec] validated web resources using the standard Node HTTP request listener interface.
 
-It validates and normalizes incoming requests, validates your Swagger Specification, and generates the documentation endpoint.
+It validates and normalizes incoming requests, validates Swagger Specification, and generates the documentation endpoints.
 
  * [Documentation](#documentation)
  * [Example](#example)
@@ -125,7 +125,7 @@ This object is attached to the `req` and `res` instances. It is used to pass sta
 <a name="sf-accept"/>
 #### sf.accept
 
-This is an instantiated [Accepts](https://github.com/expressjs/accepts#api) class.
+This is an [Accepts](https://github.com/expressjs/accepts#api) instance.
 
 <a name="sf-body"/>
 #### sf.body
@@ -211,17 +211,11 @@ var framework = swagger.Framework({ basePath: url });
 var api = framework.api({
   path: '/pet',
   description: 'Manage pets',
-  consumes: [
-    'application/json',
-  ],
-  produces: [
-    'application/json',
-  ],
+  consumes: ['application/json'],
+  produces: ['application/json'],
 });
 
-var resource = api.resource({
-  path: '/pet/{petId}'
-});
+var resource = api.resource({ path: '/pet/{petId}' });
 
 var operation = resource.operation(
   {
@@ -236,7 +230,6 @@ var operation = resource.operation(
         description: 'ID of pet that needs to be fetched',
         required: true,
         type: 'integer',
-        format: 'int64',
         paramType: 'path',
         minimum: '1',
         maximum: '100000',
@@ -266,12 +259,13 @@ api.model({
   properties: {
     id: {
       type: 'integer',
-      format: 'int64',
       description: 'unique identifier for the pet',
       minimum: '0',
       maximum: '100',
     },
-    name: { type: 'string' },
+    name: {
+      type: 'string'
+    },
     photoUrls: {
       type: 'array',
       items: { type: 'string' },
