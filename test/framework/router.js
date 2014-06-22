@@ -46,8 +46,8 @@ describe('FrameworkRouter', function() {
 
   it('should handle HEAD via GET when not defined', function(done) {
     this.request
-      .put('/pet/123')
-      .expect(405)
+      .head('/pet/123')
+      .expect(200)
       .end(function(err) {
         if (err) throw err;
 
