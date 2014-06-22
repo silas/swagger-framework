@@ -266,8 +266,11 @@ describe('FrameworkRouter', function() {
       .send(body)
       .expect('Content-Type', /json/)
       .expect(415)
-      .end(function(err) {
+      .end(function(err, res) {
         if (err) throw err;
+
+        res.body.message.should.eql('Unsupported Content-Type (application/x-' +
+          'www-form-urlencoded), supports: application/json, application/xml');
 
         done();
       });
