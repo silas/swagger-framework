@@ -76,8 +76,11 @@ describe('FrameworkRouter', function() {
       .patch('/pet/' + path.petId)
       .accept('application/soap+xml')
       .expect(406)
-      .end(function(err) {
+      .end(function(err, res) {
         if (err) throw err;
+
+        res.body.message.should.eql('Not acceptable (application/soap+xml), ' +
+          'supports: application/json, application/xml');
 
         done();
       });
