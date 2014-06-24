@@ -5,6 +5,7 @@
  */
 
 var lodash = require('lodash');
+var qs = require('qs');
 var request = require('supertest');
 
 var fixtures = require('../fixtures');
@@ -205,9 +206,12 @@ describe('FrameworkRouter', function() {
   it('should accept multiple query parameters', function(done) {
     var query = { tag: ['one', 'two'] };
 
-    this.request
+    var mime = 'application/x-www-form-urlencoded';
+    this.framework.router.decoder[mime] = qs.parse;
+
+    request(this.framework.dispatcher())
       .get('/pet/findByTags')
-      .query('tag=one&tag=two')
+      .query(query)
       .expect('Content-Type', /json/)
       .expect(200)
       .end(function(err, res) {
