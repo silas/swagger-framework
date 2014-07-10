@@ -362,4 +362,36 @@ describe('FrameworkRouter', function() {
         done();
       });
   });
+
+  it('should return etag', function(done) {
+    var path = { petId: 123 };
+
+    this.request
+      .get('/pet/' + path.petId)
+      .expect('Content-Type', /json/)
+      .expect('ETag', /4c8e30888c099e6f166c4a7d590fb0c5/)
+      .expect(200)
+      .end(function(err) {
+        if (err) throw err;
+
+        done();
+      });
+  });
+
+  it('should return 304 for valid If-None-Match', function(done) {
+    var path = { petId: 123 };
+
+    this.request
+      .get('/pet/' + path.petId)
+      .set('If-None-Match', '4c8e30888c099e6f166c4a7d590fb0c5')
+      .expect('ETag', /^4c8e30888c099e6f166c4a7d590fb0c5$/)
+      .expect(304)
+      .end(function(err, res) {
+        if (err) throw err;
+
+        res.text.should.eql('');
+
+        done();
+      });
+  });
 });

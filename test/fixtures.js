@@ -21,7 +21,7 @@ exports.framework = function(options) {
   var framework = swagger.Framework({
     basePath: options.basePath || pet.basePath,
     apiVersion: pet.apiVersion,
-  });
+  }, { etag: true });
 
   index.apis.forEach(function(aSpec) {
     var name = url.parse(aSpec.path).path.slice(1);
