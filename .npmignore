@@ -4,6 +4,7 @@
 .jshintrc
 .rock.yml
 .travis.yml
+coverage
 example.js
 test
 tmp
