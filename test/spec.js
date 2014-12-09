@@ -10,7 +10,7 @@ require('should');
 
 var lodash = require('lodash');
 
-var spec = require('../lib/spec');
+var spec = require('../lib')._spec;
 
 /**
  * Tests

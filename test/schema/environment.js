@@ -6,7 +6,7 @@
 
 var should = require('should');
 
-var Environment = require('../../lib/schema/environment');
+var Environment = require('../../lib')._schema.environment;
 
 /**
  * Tests
