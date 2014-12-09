@@ -4,8 +4,11 @@
  * Module dependencies.
  */
 
+require('should');
+
 var request = require('supertest');
-var schema = require('swagger-schema/spec');
+
+var schema = require('../../lib/schema/spec');
 
 var fixtures = require('../fixtures');
 

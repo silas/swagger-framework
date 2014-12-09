@@ -4,14 +4,17 @@
  * Module dependencies.
  */
 
+require('should');
+
 var lodash = require('lodash');
-var pet = require('swagger-schema/fixtures/pet');
 var sinon = require('sinon');
 
 var Api = require('../lib/api');
 var Docs = require('../lib/docs');
 var Framework = require('../lib/framework');
 var Router = require('../lib/framework/router');
+
+var pet = require('./schema/fixtures/pet');
 
 /**
  * Helper functions.

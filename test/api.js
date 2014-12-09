@@ -4,13 +4,16 @@
  * Module dependencies.
  */
 
-var Environment = require('swagger-schema/environment');
-var index = require('swagger-schema/fixtures/index');
+require('should');
+
 var lodash = require('lodash');
-var pet = require('swagger-schema/fixtures/pet');
 
 var Api = require('../lib/api');
+var Environment = require('../lib/schema/environment');
 var Resource = require('../lib/resource');
+
+var index = require('./schema/fixtures/index');
+var pet = require('./schema/fixtures/pet');
 
 /**
  * Helper functions.

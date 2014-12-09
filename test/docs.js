@@ -4,6 +4,8 @@
  * Module dependencies.
  */
 
+require('should');
+
 var Docs = require('../lib/docs');
 
 /**

@@ -4,6 +4,8 @@
  * Module dependencies.
  */
 
+require('should');
+
 var lodash = require('lodash');
 var qs = require('qs');
 var request = require('supertest');
@@ -355,7 +357,7 @@ describe('FrameworkRouter', function() {
 
         var request = res.body.request;
         request.should.have.property('path');
-        request.path.should.eql({ petId: 10 });
+        request.path.should.eql({ petId: '10' });
         request.should.have.property('form');
         request.form.should.eql(form);
 

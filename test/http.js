@@ -4,6 +4,8 @@
  * Module dependencies.
  */
 
+require('should');
+
 var http = require('../lib/http');
 
 /**

@@ -4,12 +4,15 @@
  * Module dependencies.
  */
 
-var index = require('swagger-schema/fixtures/index');
+require('should');
+
 var lodash = require('lodash');
-var pet = require('swagger-schema/fixtures/pet');
 var url = require('url');
 
 var swagger = require('../lib');
+
+var index = require('./schema/fixtures/index');
+var pet = require('./schema/fixtures/pet');
 
 /**
  * Helper functions.
@@ -25,7 +28,7 @@ exports.framework = function(options) {
 
   index.apis.forEach(function(aSpec) {
     var name = url.parse(aSpec.path).path.slice(1);
-    var data = lodash.cloneDeep(require('swagger-schema/fixtures/' + name));
+    var data = lodash.cloneDeep(require('./schema/fixtures/' + name));
 
     var apiSpec = lodash.omit(data, 'apis', 'models');
 
