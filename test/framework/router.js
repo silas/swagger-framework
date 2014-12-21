@@ -338,9 +338,24 @@ describe('FrameworkRouter', function() {
       });
   });
 
-  it('should reject empty body when required', function(done) {
+  it('should reject empty body when required without type', function(done) {
     this.request
       .post('/pet')
+      .expect('Content-Type', /json/)
+      .expect(400)
+      .end(function(err, res) {
+        if (err) throw err;
+
+        res.body.should.have.property('message', 'Body required');
+
+        done();
+      });
+  });
+
+  it('should reject empty body when required with type', function(done) {
+    this.request
+      .post('/pet')
+      .type('json')
       .expect('Content-Type', /json/)
       .expect(400)
       .end(function(err, res) {
