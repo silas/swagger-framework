@@ -101,7 +101,6 @@
                             "description": "Pet object that needs to be added to the store",
                             "name": "body",
                             "paramType": "body",
-                            "required": true,
                             "type": "Pet"
                         }
                     ],

@@ -324,6 +324,34 @@ describe('FrameworkRouter', function() {
       });
   });
 
+  it('should accept empty body when not required', function(done) {
+    this.request
+      .patch('/pet/123')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end(function(err, res) {
+        if (err) throw err;
+
+        res.body.request.should.not.have.property('body');
+
+        done();
+      });
+  });
+
+  it('should reject empty body when required', function(done) {
+    this.request
+      .post('/pet')
+      .expect('Content-Type', /json/)
+      .expect(400)
+      .end(function(err, res) {
+        if (err) throw err;
+
+        res.body.should.have.property('message', 'Body required');
+
+        done();
+      });
+  });
+
   it('should reject invalid form', function(done) {
     var form = { name: 'a' };
 
