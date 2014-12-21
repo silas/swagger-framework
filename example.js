@@ -1,32 +1,45 @@
 'use strict';
 
-/**
- * Module dependencies.
- */
+var hapi = require('hapi');
 
-var fixtures = require('./test/fixtures');
-var swagger = require('./lib');
+var server = new hapi.Server();
+server.connection({ port: 8000 });
 
-var host = process.env.HOST || '127.0.0.1';
-var port = process.env.PORT || 8000;
-var url = 'http://' + host + ':' + port;
+server.route({
+  method: 'GET',
+  path: '/count',
+  config: {
+    description: 'Count to X',
+    notes: [
+      'This route counts to a specified number and returns the results.',
+      'You can use it for testing',
+    ],
+    tags: ['api'],
+    handler: function(request, reply) {
+      var data = [];
 
-/**
- * Create framework
- */
+      for (var i = 0; i < 10; i++) {
+        data.push({ hello: 'world' });
+      }
 
-var framework = fixtures.framework({ basePath: url });
+      reply(data);
+    },
+  },
+});
 
-/**
- * Expose framework
- */
+var config = {
+  register: require('./lib'),
+  options: {
+    tags: ['api'],
+    info: {
+      title: 'Test Application',
+      version: '1.0',
+    },
+  },
+};
 
-if (module.parent) {
-  module.exports = framework;
-} else {
-  framework.server().listen(port, host, function(err) {
-    if (err) throw err;
+server.register(config, function(err) {
+  if (err) throw err;
 
-    console.log('Server started ' + url + '/');
-  });
-}
+  server.start();
+});
