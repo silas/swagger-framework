@@ -5,6 +5,6 @@
 .rock.yml
 .travis.yml
 coverage
-example.js
-test
+example*
+test*
 tmp
