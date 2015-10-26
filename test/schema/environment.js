@@ -43,6 +43,42 @@ describe('Environment', function() {
       data.one.should.eql([]);
     });
 
+    it('should convert object to array', function() {
+      var schema = {
+        type: 'object',
+        properties: { one: { type: 'array' } },
+      };
+      var data = { one: { a: 'x', b: 'y' } };
+
+      this.env.validateThrow(schema, data, { coerce: true });
+
+      data.one.should.eql(['x', 'y']);
+    });
+
+    it('should convert string to array', function() {
+      var schema = {
+        type: 'object',
+        properties: { one: { type: 'array' } },
+      };
+      var data = { one: 'hi' };
+
+      this.env.validateThrow(schema, data, { coerce: true });
+
+      data.one.should.eql(['hi']);
+    });
+
+    it('should convert number to array', function() {
+      var schema = {
+        type: 'object',
+        properties: { one: { type: 'array' } },
+      };
+      var data = { one: 2 };
+
+      this.env.validateThrow(schema, data, { coerce: true });
+
+      data.one.should.eql([2]);
+    });
+
     it('should convert number to string', function() {
       var schema = {
         type: 'object',
