@@ -43,6 +43,18 @@ describe('Environment', function() {
       data.one.should.eql([]);
     });
 
+    it('should convert empty string to array', function() {
+      var schema = {
+        type: 'object',
+        properties: { one: { type: 'array' } },
+      };
+      var data = { one: '' };
+
+      this.env.validateThrow(schema, data, { coerce: true });
+
+      data.one.should.eql([]);
+    });
+
     it('should convert object to array', function() {
       var schema = {
         type: 'object',
