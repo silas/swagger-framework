@@ -127,5 +127,27 @@ describe('index', function() {
         done();
       });
     });
+
+    it('should overwrite content-length if doesnt match', function(done) {
+      var self = this;
+      var length = JSON.stringify(self.body).length;
+      var expectedType = 'application/json; charset=utf8';
+
+      // Simulate a proxied request with a different response type and length
+      self.res.setHeader('content-type', 'text/html');
+      self.res.setHeader('content-length', 2);
+      self.res._headers.should.have.property('content-length');
+      self.res._headers['content-length'].should.eql(2);
+
+      self.run(function() {
+        self.res._headers.should.have.property('content-length');
+        self.res._headers['content-length'].should.eql(length);
+
+        self.res._headers.should.have.property('content-type');
+        self.res._headers['content-type'].should.eql(expectedType);
+
+        done();
+      });
+    });
   });
 });
