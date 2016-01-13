@@ -1,13 +1,13 @@
 {
   "name": "swagger-framework",
-  "version": "0.21.0",
+  "version": "0.22.0",
   "description": "Swagger Framework for web services",
   "main": "lib/index.js",
   "dependencies": {
     "accepts": "^1.0.7",
     "debug": "^2.1.0",
     "fresh": "^0.2.2",
-    "jjv": "^1.0.2",
+    "jjv": "git://github.com/cesine/jjv.git#v1.0.3",
     "jjve": "^0.5.1",
     "lodash": "^3.2.0",
     "raw-body": "^1.3.0",
